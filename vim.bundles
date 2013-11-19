@@ -1,0 +1,38 @@
+set nocompatible
+
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Define bundles via Github repos
+" Rails:
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-rails'
+
+" PHP:
+Bundle 'spf13/PIV'
+
+" HTML:
+Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-ragtag'
+
+" JS/CS:
+Bundle 'kchmck/vim-coffee-script'
+
+" Common:
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/ctags.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'garbas/snipmate.vim'
+Bundle 'rking/ag.vim'
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
+filetype on

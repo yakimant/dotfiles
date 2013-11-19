@@ -1,0 +1,54 @@
+#  Forward agent (ssh from ssh))
+ForwardAgent yes
+# Don't ask for every new server
+StrictHostKeyChecking no
+# For better connection if network is not good
+ServerAliveInterval 120
+
+##############
+# Badoo
+##############
+
+Host *.d3
+    User	    	ayakimov
+    IdentityFile	~/.ssh/badoo
+
+Host *.d4
+    User            ayakimov
+    IdentityFile	~/.ssh/badoo
+
+Host *.msk
+    User            ayakimov
+    IdentityFile	~/.ssh/badoo
+
+Host *.mlan
+    User            ayakimov
+    IdentityFile	~/.ssh/badoo
+
+Host *.ulan
+    User            ayakimov
+    IdentityFile	~/.ssh/badoo
+
+Host git.mlan
+    User	    	git
+    IdentityFile	~/.ssh/badoo
+
+##############
+# DWBN
+##############
+
+Host zeroshell
+    User            admin
+    Hostname        10.40.0.1
+
+##############
+# Private
+##############
+
+Host heroku.com
+    Hostname	heroku.com
+    Port 22 
+    IdentitiesOnly	yes 
+    IdentityFile	~/.ssh/yakimant
+    TCPKeepAlive	yes
+    User		yakimant@gmail.com

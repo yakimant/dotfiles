@@ -1,0 +1,24 @@
+# All alisese (both for bash and zsh)
+
+# ls aliases:
+#alias lla='ls -alF --group-directories-first --color=always'
+alias ll='ls -Ahl'
+#alias la='ls -A --group-directories-first --color=always'
+alias l='ls -A'
+#alias llg='ls -alF --group-directories-first --color=always|grep'
+#alias llm='ls -alF --group-directories-first --color=always|more'
+#alias lll='ls -alF --group-directories-first --color=always|more'
+
+# cd
+#alias .='pwd'
+#alias ..='cd ..'
+#alias ...='cd ...'
+
+# git
+
+# sevrers
+alias www1.d3='ssh www1.d3'
+alias www1.d4='ssh www1.d4'
+
+alias main1.mlan='ssh main1.mlan'
+alias main1.ulan='ssh main1.ulan'

@@ -1,0 +1,12 @@
+machine github.com
+	login yakimant
+	password 592a6b3a53859f01091e9a70547c132efe1e9a95
+machine api.github.com
+	login yakimant
+	password 592a6b3a53859f01091e9a70547c132efe1e9a95 
+machine api.heroku.com
+	login yakimant@gmail.com
+	password b92b0088adcc642036f0c61a6b70fb4a6a652f7e
+machine code.heroku.com
+	login yakimant@gmail.com
+	password b92b0088adcc642036f0c61a6b70fb4a6a652f7e
