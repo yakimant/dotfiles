@@ -4,6 +4,8 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+set ruler " bottom right info
+
 set number
 set autoindent
 filetype plugin indent on
@@ -13,6 +15,9 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
+
+set foldmethod=manual " Unfolded by default
+set foldlevel=99
 
 " Ag setup
 set grepprg=ag

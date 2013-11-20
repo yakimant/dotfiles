@@ -16,6 +16,8 @@ Bundle 'tpope/vim-rails'
 
 " PHP:
 Bundle 'spf13/PIV'
+Bundle '2072/PHP-Indenting-for-VIm'
+Bundle 'vim-scripts/php.vim--Hodge'
 
 " HTML:
 Bundle 'slim-template/vim-slim'

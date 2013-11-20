@@ -9,6 +9,7 @@ alias l='ls -A'
 #alias llm='ls -alF --group-directories-first --color=always|more'
 #alias lll='ls -alF --group-directories-first --color=always|more'
 
+alias s='spring '
 # cd
 #alias .='pwd'
 #alias ..='cd ..'
