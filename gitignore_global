@@ -18,6 +18,12 @@ rerun.txt
 # Ctags index file
 tags
 
+# cscope
+cscope.files
+cscope.in.out
+cscope.po.out
+cscope.out
+
 tmp/**/*
 !tmp/cache/.keep
 zeus.json

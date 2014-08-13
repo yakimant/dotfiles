@@ -45,6 +45,23 @@ function precmd(){
 
 source ~/.aliases
 
+# phpbrew
+#source ~/.phpbrew/bashrc
+
 # bash forever
 bindkey    "^[[A" history-beginning-search-backward
 bindkey    "^[[B" history-beginning-search-forward
+
+setopt noautomenu # don't selecet menu options then completion by <TAB>
+setopt NO_NOMATCH # fix git diff HEAD^ issue
+
+# Badoo
+alias deploy='/local/php5/bin/php /local/deploy/src/_scripts/deploy/deployManager.php'
+export EDITOR=vim
+
+# Less suntax highlight
+LESSPIPE=`which src-hilite-lesspipe.sh`
+export LESSOPEN="| ${LESSPIPE} %s"
+export LESS='-R'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

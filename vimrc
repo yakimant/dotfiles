@@ -18,6 +18,10 @@ set expandtab
 
 set foldmethod=manual " Unfolded by default
 set foldlevel=99
+set foldlevelstart=99
+set nofoldenable    " disable folding
+
+set pastetoggle=<F10>
 
 " Ag setup
 set grepprg=ag
