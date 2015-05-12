@@ -30,7 +30,7 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast rails4) #sprunge ssh-agent gitfast ruby rails4 brew bundler gem heroku rvm rake vundler osx composer)
+plugins=(gitfast rails) #sprunge ssh-agent gitfast ruby rails4 brew bundler gem heroku rvm rake vundler osx composer)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,11 +46,19 @@ function precmd(){
 source ~/.aliases
 
 # phpbrew
-#source ~/.phpbrew/bashrc
+# source ~/.phpbrew/bashrc
 
 # bash forever
-bindkey    "^[[A" history-beginning-search-backward
-bindkey    "^[[B" history-beginning-search-forward
+autoload    -U      up-line-or-beginning-search
+autoload    -U      down-line-or-beginning-search
+zle         -N      up-line-or-beginning-search
+zle         -N      down-line-or-beginning-search
+bindkey     "^[[A"  up-line-or-beginning-search
+bindkey     "^[[B"  down-line-or-beginning-search
+bindkey     "^OA"   up-line-or-beginning-search
+bindkey     "^OB"   down-line-or-beginning-search
+bindkey     "^[OA"  up-line-or-beginning-search
+bindkey     "^[OB"  down-line-or-beginning-search
 
 setopt noautomenu # don't selecet menu options then completion by <TAB>
 setopt NO_NOMATCH # fix git diff HEAD^ issue
@@ -64,4 +72,20 @@ LESSPIPE=`which src-hilite-lesspipe.sh`
 export LESSOPEN="| ${LESSPIPE} %s"
 export LESS='-R'
 
+# RVM
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# NVM
+export NVM_DIR="/Users/yakimant/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nv
+
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# Android SDK
+PATH=$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools
+
+# JAVA
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# export PATH=${JAVA_HOME}/bin:$PATH

@@ -28,6 +28,11 @@ alias aida2.mlan='ssh aida2.mlan'
 alias aida3.mlan='ssh aida3.mlan'
 alias teamcity1.msk='ssh teamcity1.msk'
 alias teamcity2.mlan='ssh teamcity2.mlan'
+alias dbm1.d3="ssh dbm1.d3"
+alias aida1.dd3="ssh aida1.dd3"
 
 # tools
-ctags_badoo='ctags -R --exclude=.git --languages=PHP,HTML,SQL -f badoo.tags'
+alias ctags_badoo='ctags -R --exclude=.git --languages=PHP,HTML,SQL -f badoo.tags'
+alias phpcf='~/Workspace/badoo/web/utils/phpcf'
+alias iTMSTransporter='/Applications/Application\ Loader.app/Contents/MacOS/itms/bin/iTMSTransporter'
+alias unrealsync='~/Workspace/3rdparty/unrealsync/unrealsync'

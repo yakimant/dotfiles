@@ -7,6 +7,12 @@ call vundle#rc()
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+" Color schemes
+Bundle 'tomasr/molokai'
+
+" Javascript
+Bundle 'pangloss/vim-javascript'
+
 " Define bundles via Github repos
 " Rails:
 Bundle 'thoughtbot/vim-rspec'
@@ -16,15 +22,25 @@ Bundle 'tpope/vim-rails'
 
 " PHP:
 "Bundle 'spf13/PIV'
-"Bundle '2072/PHP-Indenting-for-VIm'
-Bundle 'vim-scripts/php.vim--Hodge'
+Bundle '2072/PHP-Indenting-for-VIm'
+Bundle 'StanAngeloff/php.vim'
+"Bundle 'vim-scripts/phpfolding.vim'
 
+" Powershell
+Bundle 'PProvost/vim-ps1'
 " HTML:
 Bundle 'slim-template/vim-slim'
 Bundle 'tpope/vim-ragtag'
 
 " JS/CS:
 Bundle 'kchmck/vim-coffee-script'
+
+" JSON
+Bundle 'elzr/vim-json'
+
+" Elixir
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'mattreduce/vim-mix'
 
 " Common:
 Bundle 'tpope/vim-surround'
@@ -34,6 +50,13 @@ Bundle 'majutsushi/tagbar'
 Bundle 'garbas/snipmate.vim'
 Bundle 'rking/ag.vim'
 Bundle 'bling/vim-airline'
+
+" ae & ie motions for entire file
+Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-entire' 
+
+" Add commentary support (gc, gcc)
+Bundle 'tpope/vim-commentary.git'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
