@@ -7,6 +7,8 @@ endif
 set ruler " bottom right info
 
 set number
+" Set not to select line numbers
+" set mouse+=a
 
 " set background=dark
 let g:colors_name="molokai"
@@ -21,8 +23,10 @@ if has("autocmd")
     filetype plugin indent on
     " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
     " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+    autocmd BufNewFile,BufRead Fastfile set filetype=ruby
 endif
 
+" Indenting
 set autoindent
 set smartindent     " Add tabs there needed
 
@@ -41,11 +45,12 @@ set pastetoggle=<F10>
 " xml folding
 let g:xml_syntax_folding=1
 " au FileType xml setlocal foldmethod=syntax
-let g:php_folding=0
+let g:php_folding=1
+au FileType php setlocal foldmethod=indent
 
 " Windows
 set winheight=30
-set winminheight=5
+" set winminheight=5
 
 " Statusbar (airline, powerline, ets)
 set laststatus=2
@@ -75,3 +80,33 @@ map <D-A-LEFT> gT
 
 "nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 "nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" Airline
+" Enable the list of buffers
+"let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
+
+
+" ---------- BUFFERS ----------
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+"nmap <leader>T :enew<CR>
+
+" Move to the next buffer
+"nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+"nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+"nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+"nmap <leader>bl :ls<CR>

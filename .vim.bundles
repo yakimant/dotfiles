@@ -1,7 +1,7 @@
 set nocompatible
 
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " Let Vundle manage Vundle
@@ -19,6 +19,7 @@ Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 
 " PHP:
 "Bundle 'spf13/PIV'
@@ -47,9 +48,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'steffanc/cscopemaps.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'garbas/snipmate.vim'
+"Bundle 'garbas/snipmate.vim'
 Bundle 'rking/ag.vim'
 Bundle 'bling/vim-airline'
+" Show diff for swp file
+Bundle 'chrisbra/Recover.vim'
 
 " ae & ie motions for entire file
 Bundle 'kana/vim-textobj-user'

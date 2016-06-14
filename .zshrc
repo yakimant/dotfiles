@@ -30,12 +30,14 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast rails) #sprunge ssh-agent gitfast ruby rails4 brew bundler gem heroku rvm rake vundler osx composer)
+plugins=(gitfast) #sprunge ssh-agent gitfast ruby rails4 brew bundler gem heroku rvm rake vundler osx composer)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:~/bin:~/.rvm/bin # Add RVM to PATH for scripting
+
+# Homemade scripts
+export PATH=$PATH:~/bin
 
 # iTerm2 tab title
 function precmd(){
@@ -75,9 +77,12 @@ export LESS='-R'
 # RVM
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+# RBENV
+# eval "$(rbenv init -)"
+
 # NVM
-export NVM_DIR="/Users/yakimant/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nv
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # Go
 export GOPATH=$HOME/go
@@ -85,6 +90,9 @@ export PATH=$PATH:$GOPATH/bin
 
 # Android SDK
 PATH=$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools
+
+# GNU Tools
+PATH="/usr/local/opt/gnu-tar/libexec/gnubin":$PATH
 
 # JAVA
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`

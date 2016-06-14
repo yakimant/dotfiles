@@ -1,0 +1,24 @@
+[user]
+	name = Anton Yakimov
+	email = a.yakimov@corp.badoo.com
+[apply]
+	whitespaces = nowarn
+[color]
+	ui = auto
+[push]
+	default = simple
+	recurseSubmodules = check
+[core]
+	excludesfile = ~/.gitignore
+[hub]
+	protocol = https
+[gc]
+	auto = 0
+[pack]
+	threads = 10
+[status]
+  submoduleSummary = true
+[diff]
+	submodule = log
+[fetch]
+	recurseSubmodules = on-demand
