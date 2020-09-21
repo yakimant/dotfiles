@@ -4,26 +4,25 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+" No more Vi
+set nocompatible
+
 set ruler " bottom right info
 
 set number
 " Set not to select line numbers
 " set mouse+=a
 
-" set background=dark
-let g:colors_name="molokai"
-
-if exists("g:molokai_original")
-    let s:molokai_original = g:molokai_original
-else
-    let s:molokai_original = 0
-endif
+" set background=light
+set background=light
 
 if has("autocmd")
-    filetype plugin indent on
-    " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-    " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
-    autocmd BufNewFile,BufRead Fastfile set filetype=ruby
+  " Enable filetype detection, indentions and plugins
+  filetype plugin indent on
+  " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+  " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+  autocmd BufNewFile,BufRead Fastfile set filetype=ruby
+  "autocmd Filetype kotlin setlocal ts=4 sw=4 expandtab
 endif
 
 " Indenting
@@ -35,6 +34,7 @@ set shiftwidth=2    " Shifting with < or >
 set softtabstop=2   " Generaly == to shifttabstop
 set smarttab
 set expandtab " Put spaces instead of tabs
+
 
 " Folding
 set foldmethod=manual " Unfolded by default
@@ -61,8 +61,9 @@ set grepprg=ag
 " Ctags file:
 set tags=./tags;
 
-if filereadable(expand("~/.vim.bundles"))
-  source ~/.vim.bundles
+" Plugs
+if filereadable(expand("~/.vim/plugs.vim"))
+  source ~/.vim/plugs.vim
 endif
 
 " Magical option alowing to copy/paste to system clipboard (y,d,p also work)
@@ -77,6 +78,14 @@ nmap <F8> :TagbarToggle<CR>
 " Switch tabs like in Chrome
 map <D-A-RIGHT> gt
 map <D-A-LEFT> gT
+
+" Make `jj` and `jk` throw you into normal mode
+inoremap jj <esc>
+inoremap jk <esc>
+" Map `Escape` to ‘nothing’ in Normal, Visual, Select, Operator-pending modes
+"noremap: <esc> <nop>
+" Map `Escape` to ‘nothing’ in Insert and Command modes
+"noremap!: <esc> <nop>
 
 "nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 "nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
