@@ -86,7 +86,7 @@ export PATH=$ANDROID_HOME/platform-tools:$PATH
 export XCODE_INSTALL_USER='a.yakimov@corp.badoo.com'
 
 # Homebrew
-export HOMEBREW_GITHUB_API_TOKEN='b4bdcce5a9c84015a0c9f482377780c97e019482'
+#export HOMEBREW_GITHUB_API_TOKEN=''
 
 # RVM
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
