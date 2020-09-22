@@ -730,7 +730,9 @@
 	<key>NSNavLastRootDirectory</key>
 	<string>~/Downloads/solarized/iterm2-colors-solarized</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 448}</string>
+	<string>{799, 448}</string>
+	<key>NSOverlayScrollersFallBackForAccessoryViews</key>
+	<false/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -772,16 +774,18 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>1320 744 799 448 0 0 3440 1440 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>276 457 606 456 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
-	<string>1196 1138 616 174 0 0 3008 1692 </string>
+	<string>1411 633 616 174 0 0 3440 1440 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 769 620 392 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>781 1185 770 429 0 0 3008 1692 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>2292 0 1305 1440 0 0 3440 1440 </string>
+	<string>2294 988 665 452 0 0 3440 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>54 29 650 427 0 0 1280 778 </string>
 	<key>NeverWarnAboutMeta</key>
@@ -974,7 +978,7 @@
 				<real>0.79607843137254897</real>
 			</dict>
 			<key>Automatically Log</key>
-			<true/>
+			<false/>
 			<key>BM Growl</key>
 			<true/>
 			<key>Background Color</key>
@@ -2332,10 +2336,12 @@
 	<array>
 		<string>3.3.6</string>
 		<string>3.3.10beta3</string>
+		<string>3.4.0beta5</string>
 		<string>3.3.0beta5</string>
 		<string>3.3.2beta2</string>
 		<string>3.3.8beta3</string>
 		<string>3.3.9</string>
+		<string>3.3.10beta4</string>
 		<string>3.3.3beta2</string>
 		<string>3.3.4</string>
 	</array>
@@ -2353,16 +2359,20 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1397, 1133}</string>
+		<string>{656, 1061}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
+	<key>NoSyncIgnoreSystemWindowRestoration</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>FD384B7E-0713-4C3B-9B79-3AC9860F45EC</string>
+	<key>NoSyncLastOSVersion</key>
+	<string>Version 10.15.6 (Build 19G2021)</string>
 	<key>NoSyncLastTipTime</key>
 	<real>494946469.01639098</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>27</integer>
+	<integer>46</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2496,6 +2506,22 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>processTitle</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>selectionLength</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>path</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2507,6 +2533,14 @@
 				<string>triggerName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<false/>
+				<key>name</key>
+				<string>parentSession</string>
+				<key>nonterminalContext</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -2632,6 +2666,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>selection</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>autoNameFormat</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2750,6 +2792,14 @@
 				<string>currentTab</string>
 				<key>nonterminalContext</key>
 				<integer>2</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.currentSession.processTitle</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -3173,11 +3223,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing_new.xml?shard=9</string>
+	<string>https://iterm2.com/appcasts/testing_modern.xml?shard=9</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-06T11:57:32Z</date>
+	<date>2020-09-21T11:23:33Z</date>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3235,6 +3285,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.10beta3</string>
+	<string>3.4.0beta5</string>
 </dict>
 </plist>
