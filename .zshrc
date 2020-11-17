@@ -18,7 +18,7 @@ DISABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(gitfast) #sprunge ssh-agent gitfast ruby rails4 brew bundler gem heroku rvm rake vundler osx composer)
-plugins=(brew bundler colored-man-pages common-aliases gitfast tmux)
+plugins=(brew bundler colored-man-pages common-aliases git gitfast tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,6 +26,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Homemade scripts
 export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin/
 
 # iTerm2 tab title - fix for tmux
 #function precmd(){
