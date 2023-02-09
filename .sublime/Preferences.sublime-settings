@@ -1,0 +1,10 @@
+{
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"color_scheme": "Solarized (light).sublime-color-scheme",
+	"font_face": "JetBrains Mono",
+	"font_size": 13,
+	"save_on_focus_lost": true,
+}
