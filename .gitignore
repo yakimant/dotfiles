@@ -1,29 +1,3 @@
-# Private Rails file:
-database.yml
-application.yml
-
 # Mac files
 *.DS_Store
 *.sw[nop]
-
-.bundle
-.env
-db/*.sqlite3
-
-# Rails logs
-log/*.log
-
-rerun.txt
-
-# Ctags index file
-tags
-
-# cscope
-cscope.files
-cscope.in.out
-cscope.po.out
-cscope.out
-
-tmp/**/*
-!tmp/cache/.keep
-zeus.json

@@ -1,12 +1,6 @@
-# All aliases (both for bash and zsh)
-
-alias w='which'
-alias ag='ag --hidden'
-alias kotlin-dsl-patches='git ls-files | grep /patches/ | xargs -L1 -I{} git --no-pager log --diff-filter=A --pretty="format:" --name-only -1 --author 'yakimov' -- {}'
-
-# tools
-alias ctags_badoo='ctags -R --exclude=.git --languages=PHP,HTML,SQL -f badoo.tags'
+alias intel='echo x86_64; arch -x86_64 zsh; arch'
 
 # neovim
 alias vi='nvim'
 alias vim='nvim'
+

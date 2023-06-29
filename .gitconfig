@@ -1,38 +1,6 @@
 [user]
 	name = Anton Iakimov
-	email = a.yakimov@corp.badoo.com
-[apply]
-	whitespaces = nowarn
-[color]
-	ui = auto
-[push]
-	default = simple
-	recurseSubmodules = check
-[core]
-	excludesfile = ~/.gitignore
-	autocrlf = false
-[hub]
-	protocol = https
-[gc]
-	auto = 0
-[pack]
-	threads = 10
-[status]
-	submoduleSummary = true
-[diff]
-	submodule = log
-	tool = Kaleidoscope
-[fetch]
-	recurseSubmodules = on-demand
-	recurseSubmodule = -h
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[mergetool]
-	prompt = false
-[merge]
-	tool = Kaleidoscope
+	email = yakimant@gmail.com
+  signingkey = AD7E5196382127EA
+[commit]
+  gpgsign = true
