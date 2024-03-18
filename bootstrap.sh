@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-ln -s $HOME/../Shared/dotfiles/.alacritty.yml $HOME/.alacritty.yml
-ln -s $HOME/../Shared/dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -fs $HOME/work/dotfiles/.alacritty.toml $HOME/.alacritty.toml
+ln -fs $HOME/work/dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -fs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
+
+#./.macos
