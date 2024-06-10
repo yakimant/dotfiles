@@ -28,3 +28,6 @@ alias vi="vim"
 # other
 alias ..='cd ..'
 alias h='fc -l 1'
+alias rm='rm -i '
+alias cp='cp -i '
+alias mv='mv -i '
