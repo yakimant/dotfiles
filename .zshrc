@@ -61,6 +61,7 @@ export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
 
 # macOS
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_BUNDLE_FILE="${HOME}/.Brewfile"
 
 if which nvim >/dev/null; then
     EDITOR="nvim"
