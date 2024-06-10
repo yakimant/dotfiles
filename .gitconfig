@@ -1,6 +1,20 @@
+[init]
+  defaultBranch = master
 [user]
 	name = Anton Iakimov
 	email = yakimant@gmail.com
-  signingkey = AD7E5196382127EA
+  signingkey = ~/.ssh/id_ed25519_sk_no_touch.pub
 [commit]
   gpgsign = true
+[gpg]
+	format = ssh
+[core]
+	excludesfile = ~/.gitignore
+[submodule]
+	recurse = true
+[color]
+  ui = true
+[push]
+  default = current
+[pull]
+  ff = only
