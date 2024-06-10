@@ -1,10 +1,13 @@
 {
 	"ignored_packages":
 	[
+		"Package Control",
 		"Vintage",
 	],
 	"color_scheme": "Solarized (light).sublime-color-scheme",
 	"font_face": "FireCode Nerd Fono Mono",
 	"font_size": 17,
 	"save_on_focus_lost": true,
+	"update_check": false,
+	"index_files": true,
 }
