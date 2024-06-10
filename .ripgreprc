@@ -1,0 +1,7 @@
+--no-ignore
+--glob=!searchindex.json
+--glob=!searchindex.js
+--glob=!highlight.js
+--glob=!font-awesome.css
+--glob=!search-index.json
+--glob=!*js.map
