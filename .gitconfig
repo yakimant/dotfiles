@@ -10,6 +10,7 @@
 	format = ssh
 [core]
 	excludesfile = ~/.gitignore
+    whitespace = trailing-space,space-before-tab
 [submodule]
 	recurse = true
 [color]
@@ -18,3 +19,5 @@
   default = current
 [pull]
   ff = only
+[apply]
+    whitespace = fix
