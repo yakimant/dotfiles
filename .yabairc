@@ -1,0 +1,113 @@
+#!/usr/bin/env sh
+
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+#layout                       bsp            \
+#    window_animation_frame_rate  120            \
+# global settings - default
+yabai -m config                                 \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          autoraise      \
+    window_origin_display        default        \
+    window_placement             second_child   \
+    window_zoom_persist          on             \
+    window_shadow                on             \
+    window_opacity_duration      0.0            \
+    active_window_opacity        1.0            \
+    normal_window_opacity        0.90           \
+    window_opacity               off            \
+    insert_feedback_color        0xffd75f5f     \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 off            \
+    top_padding                  0             \
+    bottom_padding               0             \
+    left_padding                 0             \
+    right_padding                0             \
+    window_gap                   0             \
+    layout                       stack            \
+    mouse_modifier               fn             \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            swap
+
+
+#yabai -m config                                 \
+#    window_animation_duration    0.0            \
+#    focus_follows_mouse          on
+
+# 3440 - 2560 = 880
+#yabai -m config layout bsp
+#yabai -m space 1 --padding abs:0:0:452:452
+#yabai -m space 2 --padding abs:0:0:452:452
+#yabai -m space 3 --padding abs:0:0:452:452
+#yabai -m space 4 --padding abs:0:0:452:452
+#yabai -m space 5 --padding abs:0:0:452:452
+#yabai -m space 6 --padding abs:0:0:452:452
+#yabai -m space 7 --padding abs:0:0:452:452
+#yabai -m space 8 --padding abs:0:0:452:452
+#yabai -m space 9 --padding abs:0:0:452:452
+#yabai -m space 0 --padding abs:0:0:452:452
+#yabai -m space --balance
+
+# custom
+yabai -m space 1 --label "terminal"
+yabai -m space 2 --label "edit"
+yabai -m space 3 --label "web"
+yabai -m space 4 --label "comm" --layout "stack"
+yabai -m space 5 --label "misc" --layout "stack"
+
+
+#yabai -m rule --add app="^(Reeder|UTM|Finder|MacGPT|Brave Browser|1Password|Xcode-.*|Activity Monitor|Keychain Access)" space=1
+yabai -m rule --add app="(Firefox)" space="^web"
+yabai -m rule --add app="(Mail|Discord|Status)" space="^comm"
+yabai -m rule --add app!="(Alacritty|Firefox|Google Meet|Mail|Discord|Status)" space="^misc"
+
+# apps to not manage (ignore)
+#yabai -m rule --add app!="^(Reeder|MacGPT|UTM|Mail|Discord|Status|Typora|Finder|Firefox|Alacritty)$" manage=off
+#yabai -m rule --add app!="^(Typora|Firefox|Alacritty|Mail|Discord|Status)$"
+yabai -m rule --add title="^Page Info .*$" manage=off
+yabai -m rule --add title="Info$" manage=off
+yabai -m rule --add title="UTM" manage=off
+#yabai -m rule --add app="^System Settings$" manage=off
+#yabai -m rule --add app="^1Password$" manage=off
+#yabai -m rule --add app="^Cold Turkey Blocker$" manage=off
+#yabai -m rule --add app="^Extension:.*" manage=off
+#yabai -m rule --add app="^Google Meet$" manage=off
+
+#yabai -m signal --add event=window_created action="~/.config/yabai/three-columns.sh"
+#yabai -m signal --add event=window_destroyed action="~/.config/yabai/three-columns.sh"
+#yabai -m signal --add event=window_minimized action="~/.config/yabai/three-columns.sh"
+#yabai -m signal --add event=window_deminimized action="~/.config/yabai/three-columns.sh"
+#yabai -m signal --add event=space_changed action="~/.config/yabai/three-columns.sh"
+#
+#yabai -m signal --add event=window_resized action="~/.config/yabai/three-columns.sh"
+#yabai -m signal --add event=window_moved action="~/.config/yabai/three-columns.sh"
+
+signals=(
+   "space_changed"
+   "display_added"
+   "display_removed"
+   "display_moved"
+   "display_changed"
+   "mission_control_enter"
+   "mission_control_exit"
+   "space_created"
+   "space_destroyed"
+)
+for signal in "${signals[@]}"
+do
+   yabai --message signal \
+         --add \
+            event=$signal \
+            action="osascript -e 'tell application \"Spaceman\" to refresh'"
+done
+
+echo "yabai configuration loaded.."

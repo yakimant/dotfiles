@@ -70,17 +70,26 @@ mods = "Control|Shift"
 enabled = true
 mods = "Command"
 
-[[keyboard.bindings]]
-action = "None"
-key = "F"
-mods = "Command"
+[keyboard]
+bindings = [
+  #{ action = "None", key = "F", mods = "Command" }
+  #  # Disable Cmd-W and Cmd-Q to prevent accidental exit
+  { key = "Q", mods = "Command", action = "None" },
+  { key = "W", mods = "Command", action = "None" },
+]
 
 [scrolling]
 history = 10000
 
 [shell]
-args = ["-l", "-c", "source ~/.zshrc; tmux attach 2> /dev/null || tmux"]
+# Good bye, tmux
+#args = ["-l", "-c", "source ~/.zshrc; tmux attach 2> /dev/null || tmux"]
 program = "/bin/zsh"
+args = ["-l"]
 
 [window]
 option_as_alt = "Both"
+decorations = "Buttonless"
+
+[selection]
+save_to_clipboard = true
