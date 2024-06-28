@@ -20,6 +20,7 @@ else
     EDITOR="vim"
 fi
 
+fpath+=($HOME/.zsh/pure)
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Java Home
@@ -62,6 +63,8 @@ colors                  # initialize
 compinit                # longest wait
 promptinit
 
+prompt pure
+
 # History search
 export HISTSIZE=4000                  # number of lines kept in history
 export SAVEHIST=4000                  # number of lines saved in the history after logout
@@ -71,11 +74,11 @@ setopt SHARE_HISTORY                  # for sharing history between zsh proce'se
 setopt HIST_IGNORE_ALL_DUPS           # Ignore duplicates in history
 setopt HIST_IGNORE_SPACE              # don't record entry if a space is preceeding it
 
-
 # Plugin manager
 #export ZSH="$HOME/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 eval "$(sheldon source)"
-eval "$(starship init zsh)"
+
+eval "$(direnv hook zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
@@ -142,6 +145,17 @@ function t {
     fi
 }
 
+function select-work-dir() {
+    echo "${HOME}"
+    WORK_DIR="${HOME}/work"
+    SELECTED=$(ls "${WORK_DIR}" | fzf)
+    [[ -n "${SELECTED}" ]] && cd "${WORK_DIR}/${SELECTED}"
+    echo
+    zle reset-prompt
+}
+zle     -N   select-work-dir
+bindkey '^a' select-work-dir
+
 #################################
 # Aliases
 #################################
@@ -168,10 +182,8 @@ alias gf='git fetch'
 alias gb='git branch'
 
 # ls
-alias ls="ls --color"
 alias l="ls -AF"
 alias ll="ls -aFl"
-alias vi="vim"
 
 # other
 alias ..='cd ..'
