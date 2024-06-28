@@ -65,6 +65,8 @@ promptinit
 
 prompt pure
 
+export PURE_GIT_PULL=0
+
 # History search
 export HISTSIZE=4000                  # number of lines kept in history
 export SAVEHIST=4000                  # number of lines saved in the history after logout
