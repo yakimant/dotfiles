@@ -79,7 +79,7 @@ bindings = [
 ]
 
 [scrolling]
-history = 10000
+history = 100000
 
 [shell]
 # Good bye, tmux
