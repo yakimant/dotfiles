@@ -14,3 +14,4 @@
 --glob=!**/generated/*.js
 --glob=!**/extensions/pluto.js
 --glob=!**/.yarn/releases/*.cjs
+--glob=!.git
