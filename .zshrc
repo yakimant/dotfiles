@@ -16,8 +16,10 @@ export HOMEBREW_BUNDLE_FILE="${HOME}/.Brewfile"
 if which nvim >/dev/null; then
     EDITOR="nvim"
     alias vim='nvim'
+    alias vi='nvim'
 else
     EDITOR="vim"
+    alias vi='vim'
 fi
 
 fpath+=($HOME/.zsh/pure)
@@ -47,6 +49,10 @@ fi
 gpgconf --launch gpg-agent
 
 export ROLES_WORKERS=1
+
+# Dir Stacks
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
 
 #################################
 # General
@@ -164,9 +170,6 @@ bindkey '^a' select-work-dir
 
 alias intel='echo x86_64; arch -x86_64 zsh; arch'
 
-# neovim
-alias vi='nvim'
-alias vim='nvim'
 
 # git
 alias gco='git checkout'
@@ -184,8 +187,8 @@ alias gf='git fetch'
 alias gb='git branch'
 
 # ls
-alias l="ls -AF"
-alias ll="ls -aFl"
+alias l="ls -AF --color"
+alias ll="ls -aFl --color"
 
 # other
 alias ..='cd ..'
@@ -193,3 +196,6 @@ alias h='fc -l 1'
 alias rm='rm -i '
 alias cp='cp -i '
 alias mv='mv -i '
+alias grep='grep -i --color'
+alias df='df -h'
+alias dirs='dirs -v'
