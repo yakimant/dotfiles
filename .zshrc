@@ -83,8 +83,7 @@ setopt HIST_IGNORE_ALL_DUPS           # Ignore duplicates in history
 setopt HIST_IGNORE_SPACE              # don't record entry if a space is preceeding it
 
 # Plugin manager
-#export ZSH="$HOME/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
-eval "$(sheldon source)"
+#eval "$(sheldon source)"
 
 eval "$(direnv hook zsh)"
 
