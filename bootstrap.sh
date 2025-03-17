@@ -20,6 +20,7 @@ ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
 
 #./.macos
 
+ln -fvs $HOME/work/dotfiles/.ssh/config $HOME/.ssh/config
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389 $HOME/.ssh/id_ed25519_sk_no_touch
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389.pub $HOME/.ssh/id_ed25519_sk_no_touch.pub
 #ln -fvs $HOME/.ssh/id_ed25519_sk_touch_24553389 $HOME/.ssh/id_ed25519_sk_touch
