@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+passage ift/cachix_activate_token
