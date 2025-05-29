@@ -12,6 +12,7 @@ ln -fvs $HOME/work/dotfiles/bin/* $HOME/bin/
 
 mkdir -p $HOME/.config
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
+ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store

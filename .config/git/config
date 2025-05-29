@@ -1,23 +1,19 @@
 [init]
   defaultBranch = master
-[user]
-	name = Anton Iakimov
-	email = yakimant@gmail.com
-  signingkey = ~/.ssh/id_ed25519_sk_no_touch.pub
 [commit]
   gpgsign = true
 [gpg]
 	format = ssh
 [core]
 	excludesfile = ~/.gitignore
-    whitespace = trailing-space,space-before-tab
+  whitespace = trailing-space,space-before-tab
 [submodule]
 	recurse = true
 [color]
   ui = true
 [push]
   default = current
-[pull]
-  ff = only
 [apply]
-    whitespace = fix
+  whitespace = fix
+[include]
+  path = ~/.config/git/workspace.inc

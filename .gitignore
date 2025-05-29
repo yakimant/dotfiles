@@ -1,6 +1,1 @@
-# Mac files
-*.DS_Store
-*.sw[nop]
-
-# Other
-*~
+.config/git/workspace.inc
