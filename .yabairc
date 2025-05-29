@@ -14,7 +14,7 @@ sudo yabai --load-sa
 # global settings - default
 yabai -m config                                 \
     mouse_follows_focus          off            \
-    focus_follows_mouse          autoraise      \
+    focus_follows_mouse          off            \
     window_origin_display        default        \
     window_placement             second_child   \
     window_zoom_persist          on             \
@@ -58,17 +58,20 @@ yabai -m config                                 \
 #yabai -m space --balance
 
 # custom
-yabai -m space 1 --label "terminal"
-yabai -m space 2 --label "edit"
+yabai -m space 1 --label "main"
+yabai -m space 2 --label "notes"
 yabai -m space 3 --label "web"
 yabai -m space 4 --label "comm" --layout "stack"
 yabai -m space 5 --label "misc" --layout "stack"
+yabai -m space 6 --label "secondary"
+yabai -m space 7 --label "call" --layout "stack"
 
 
 #yabai -m rule --add app="^(Reeder|UTM|Finder|MacGPT|Brave Browser|1Password|Xcode-.*|Activity Monitor|Keychain Access)" space=1
 yabai -m rule --add app="(Firefox)" space="^web"
-yabai -m rule --add app="(Mail|Discord|Status)" space="^comm"
-yabai -m rule --add app!="(Alacritty|Firefox|Google Meet|Mail|Discord|Status)" space="^misc"
+yabai -m rule --add app="(Mail|Discord|Status|Element|Telegram)" space="^comm"
+yabai -m rule --add app="(Brave Browser|Google Meet)" space="^call"
+yabai -m rule --add app!="(Alacritty|Firefox|Brave Browser|Google Meet|Mail|Discord|Status|Element|Telegram)" space="^misc"
 
 # apps to not manage (ignore)
 #yabai -m rule --add app!="^(Reeder|MacGPT|UTM|Mail|Discord|Status|Typora|Finder|Firefox|Alacritty)$" manage=off
