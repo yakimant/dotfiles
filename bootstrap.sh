@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-ln -fvs $HOME/work/dotfiles/.alacritty.toml $HOME/.alacritty.toml
 ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
 
 mkdir -p $HOME/bin
@@ -11,6 +10,7 @@ ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
 ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 ln -fvs $HOME/work/dotfiles/.config/tmux $HOME/.config/tmux
 ln -fvs $HOME/work/dotfiles/.config/zsh $HOME/.config/zsh
+ln -fvs $HOME/work/dotfiles/.config/alacritty.toml $HOME/.config/alacritty.toml
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store
