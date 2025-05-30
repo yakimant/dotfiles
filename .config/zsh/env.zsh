@@ -1,6 +1,6 @@
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
-export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 #export HOMEBREW_BUNDLE_FILE="${HOME}/.Brewfile"

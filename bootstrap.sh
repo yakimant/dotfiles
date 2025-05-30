@@ -11,6 +11,7 @@ ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 ln -fvs $HOME/work/dotfiles/.config/tmux $HOME/.config/tmux
 ln -fvs $HOME/work/dotfiles/.config/zsh $HOME/.config/zsh
 ln -fvs $HOME/work/dotfiles/.config/alacritty.toml $HOME/.config/alacritty.toml
+ln -fvs $HOME/work/dotfiles/.config/ripgreprc $HOME/.config/ripgreprc
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store
