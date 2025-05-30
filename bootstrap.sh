@@ -2,9 +2,6 @@
 
 ln -fvs $HOME/work/dotfiles/.alacritty.toml $HOME/.alacritty.toml
 ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
-ln -fvs $HOME/work/dotfiles/.zsh $HOME/.zsh
-ln -fvs $HOME/work/dotfiles/.gitconfig $HOME/.gitconfig
-ln -fvs $HOME/work/dotfiles/.gitignore $HOME/.gitignore
 
 mkdir -p $HOME/bin
 ln -fvs $HOME/work/dotfiles/bin/* $HOME/bin/
@@ -13,6 +10,7 @@ mkdir -p $HOME/.config
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
 ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 ln -fvs $HOME/work/dotfiles/.config/tmux $HOME/.config/tmux
+ln -fvs $HOME/work/dotfiles/.config/zsh $HOME/.config/zsh
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store
