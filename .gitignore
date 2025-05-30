@@ -1,1 +1,4 @@
 .config/git/workspace.inc
+.ssh/id_*
+.ssh/*pub
+.ssh/known_hosts
