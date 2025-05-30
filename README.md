@@ -1,12 +1,11 @@
 WIP
 
 TODO:
-- vim
-- bash/zsh
-- git
-- osx/brew
-- ctags
-- status sync code
+
+- bash/zsh: functions, shorthands, fzf
+- ssh: include workspace specific settings
+- psql
+- osx/brew (maybe, but better nix-darwin)
 - cold turkey sync
 
 Setup:
