@@ -38,11 +38,6 @@ yabai -m config                                 \
     mouse_action2                resize         \
     mouse_drop_action            swap
 
-
-#yabai -m config                                 \
-#    window_animation_duration    0.0            \
-#    focus_follows_mouse          on
-
 # 3440 - 2560 = 880
 #yabai -m config layout bsp
 #yabai -m space 1 --padding abs:0:0:452:452
@@ -61,13 +56,12 @@ yabai -m config                                 \
 yabai -m space 1 --label "main"
 yabai -m space 2 --label "notes"
 yabai -m space 3 --label "web"
-yabai -m space 4 --label "comm" --layout "stack"
-yabai -m space 5 --label "misc" --layout "stack"
+yabai -m space 4 --label "comm"
+yabai -m space 5 --label "misc"
 yabai -m space 6 --label "secondary"
-yabai -m space 7 --label "call" --layout "stack"
+yabai -m space 7 --label "call"
 
 
-#yabai -m rule --add app="^(Reeder|UTM|Finder|MacGPT|Brave Browser|1Password|Xcode-.*|Activity Monitor|Keychain Access)" space=1
 yabai -m rule --add app="(Firefox)" space="^web"
 yabai -m rule --add app="(Mail|Discord|Status|Element|Telegram)" space="^comm"
 yabai -m rule --add app="(Brave Browser|Google Meet)" space="^call"
@@ -94,23 +88,23 @@ yabai -m rule --add title="UTM" manage=off
 #yabai -m signal --add event=window_resized action="~/.config/yabai/three-columns.sh"
 #yabai -m signal --add event=window_moved action="~/.config/yabai/three-columns.sh"
 
-signals=(
-   "space_changed"
-   "display_added"
-   "display_removed"
-   "display_moved"
-   "display_changed"
-   "mission_control_enter"
-   "mission_control_exit"
-   "space_created"
-   "space_destroyed"
-)
-for signal in "${signals[@]}"
-do
-   yabai --message signal \
-         --add \
-            event=$signal \
-            action="osascript -e 'tell application \"Spaceman\" to refresh'"
-done
+#signals=(
+#   "space_changed"
+#   "display_added"
+#   "display_removed"
+#   "display_moved"
+#   "display_changed"
+#   "mission_control_enter"
+#   "mission_control_exit"
+#   "space_created"
+#   "space_destroyed"
+#)
+#for signal in "${signals[@]}"
+#do
+#   yabai --message signal \
+#         --add \
+#            event=$signal \
+#            action="osascript -e 'tell application \"Spaceman\" to refresh'"
+#done
 
 echo "yabai configuration loaded.."
