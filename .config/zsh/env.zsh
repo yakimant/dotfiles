@@ -1,5 +1,9 @@
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
+
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -24,9 +28,9 @@ source <(fzf --zsh)
 
 path+=(
   "$HOME/bin"
-  "$(go env GOPATH)/bin"
+#  "$(go env GOPATH)/bin"
 #  "${ANDROID_HOME}/emulator"
 #  "${ANDROID_HOME}/platform-tools"
 )
 
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
