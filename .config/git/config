@@ -14,5 +14,7 @@
   default = current
 [apply]
   whitespace = fix
+[user]
+  useConfigOnly = true
 [include]
   path = ~/.config/git/workspace.inc
