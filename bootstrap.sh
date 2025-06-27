@@ -33,3 +33,6 @@ ln -fvs $HOME/work/dotfiles/.ssh/config $HOME/.ssh/config
 #yabai --start-service
 #skhd --install-service
 #skhd --start-service
+
+defaults write org.alacritty NSUserKeyEquivalents -dict-add "Quit alacritty" nil
+defaults write org.alacritty NSUserKeyEquivalents -dict-add "Hide alacritty" nil
