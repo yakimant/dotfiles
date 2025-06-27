@@ -44,5 +44,3 @@ function select-work-dir() {
     echo
     zle reset-prompt
 }
-zle     -N   select-work-dir
-bindkey '^a' select-work-dir
