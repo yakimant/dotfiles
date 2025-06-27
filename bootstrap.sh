@@ -2,8 +2,7 @@
 
 ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
 
-mkdir -p $HOME/bin
-ln -fvs $HOME/work/dotfiles/bin/* $HOME/bin/
+ln -fvs $HOME/work/dotfiles/bin $HOME/bin
 
 mkdir -p $HOME/.config
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
@@ -14,6 +13,7 @@ ln -fvs $HOME/work/dotfiles/.config/alacritty.toml $HOME/.config/alacritty.toml
 ln -fvs $HOME/work/dotfiles/.config/ripgreprc $HOME/.config/ripgreprc
 ln -fvs $HOME/work/dotfiles/.config/skhd $HOME/.config/skhd
 ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
+ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store

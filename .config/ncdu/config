@@ -1,0 +1,3 @@
+--exclude /System/Volumes/Data
+--exclude /Volumes
+--color dark
