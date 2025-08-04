@@ -1,8 +1,6 @@
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
 export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-gpgconf --launch gpg-agent
 
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
@@ -13,6 +11,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 # IFT
 export AGE_IDENTITIES="$HOME/.passage/identities"
 export LIDO_REMOTE_USER="yakimant"
+#export LIDO_REMOTE_CORES=4
 export ROLES_WORKERS=1
 
 export PURE_GIT_PULL=0
@@ -21,7 +20,7 @@ export PURE_GIT_PULL=0
 #export ANDROID_SDK_ROOT="${ANDROID_HOME}"
 
 eval "$(direnv hook zsh)"
-export DIRENV_LOG_FORMAT=''
+export DIRENV_LOG_FORMAT=
 export DIRENV_WARN_TIMEOUT=20s
 
 source <(fzf --zsh)
@@ -33,4 +32,11 @@ path+=(
 #  "${ANDROID_HOME}/platform-tools"
 )
 
+# https://specifications.freedesktop.org/basedir-spec/latest/
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XFG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XFG_STATE_HOME:-$HOME/.local/state}"
+export XDG_RUNTIME_DIR="${XFG_RUNTIME_HOME:-$TMPDIR}"
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"

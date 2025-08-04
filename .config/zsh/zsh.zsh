@@ -1,6 +1,6 @@
 # History search
-export HISTSIZE=4000                  # number of lines kept in history
-export SAVEHIST=4000                  # number of lines saved in the history after logout
+export HISTSIZE=10000                  # number of lines kept in history
+export SAVEHIST=10000                  # number of lines saved in the history after logout
 export HISTFILE="$HOME/.zsh_history"  # location of history
 setopt INC_APPEND_HISTORY             # append command to history file once executed
 setopt SHARE_HISTORY                  # for sharing history between zsh proce'ses

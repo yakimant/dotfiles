@@ -7,6 +7,8 @@ else
     alias vi='vim'
 fi
 
+export VISION="$EDITOR"
+
 alias intel='echo x86_64; arch -x86_64 zsh; arch'
 
 # git
@@ -45,3 +47,5 @@ alias ssh-agent-sk='killall ssh-agent; eval $(ssh-agent); ssh-add -k ~/.ssh/id_e
 alias agenix='agenix --identity ~/.passage/identities'
 alias age='age --identity ~/.passage/identities'
 alias markdownlint='markdownlint --config ~/.markdownlint.yaml'
+alias known-hosts-remove='sudo ssh-keygen -f ~/.ssh/known_hosts -R '
+#alias terraform='tofu'
