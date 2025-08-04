@@ -1,5 +1,7 @@
 [init]
   defaultBranch = master
+[checkout]
+  defaultRemote = origin
 [commit]
   gpgsign = true
 [gpg]
