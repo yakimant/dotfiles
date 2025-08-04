@@ -1,4 +1,5 @@
 --hidden
+--smart-case
 --glob=!searchindex.json
 --glob=!searchindex.js
 --glob=!highlight.js
