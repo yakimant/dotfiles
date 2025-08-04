@@ -5,5 +5,5 @@ return {
   config = function()
     require('langmapper').setup({--[[ your config ]]})
   end,
-  enabled = true,
+  enabled = false,
 }
