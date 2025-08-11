@@ -22,6 +22,7 @@ ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 
 #./.macos
 
+mkdir -p $HOME/.ssh/sockets
 ln -fvs $HOME/work/dotfiles/.ssh/config $HOME/.ssh/config
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389 $HOME/.ssh/id_ed25519_sk_no_touch
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389.pub $HOME/.ssh/id_ed25519_sk_no_touch.pub
