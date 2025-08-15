@@ -14,6 +14,7 @@ ln -fvs $HOME/work/dotfiles/.config/ripgreprc $HOME/.config/ripgreprc
 ln -fvs $HOME/work/dotfiles/.config/skhd $HOME/.config/skhd
 ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
 ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
+ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store
