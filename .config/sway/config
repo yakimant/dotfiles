@@ -84,7 +84,7 @@ input type:keyboard {
     repeat_rate 30
     xkb_layout "us,ru"
     xkb_variant ",mac"
-    xkb_options "ctrl:nocaps,grp:win_space_toggle,ctrl:swap_lalt_lctrl"
+    xkb_options "ctrl:nocaps,grp:alt_space_toggle,ctrl:swap_lalt_lctrl"
 }
 
 ### Key bindings
