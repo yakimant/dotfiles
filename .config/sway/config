@@ -67,7 +67,7 @@ workspace_layout stacking
 
 input 2:10:TPPS/2_Elan_TrackPoint {
     accel_profile "flat"
-    pointer_accel 0.3
+    pointer_accel 0.5
 }
 
 input 2:7:SynPS/2_Synaptics_TouchPad {
@@ -79,12 +79,21 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
     dwt enabled
 }
 
+input 1452:613:Apple_Inc._Magic_Trackpad {
+    accel_profile "flat"
+    pointer_accel 0.9
+    scroll_factor 0.15
+    tap_button_map lrm
+    tap enabled
+    dwt enabled
+}
+
 input type:keyboard {
     repeat_delay 250
     repeat_rate 30
     xkb_layout "us,ru"
     xkb_variant ",mac"
-    xkb_options "ctrl:nocaps,grp:alt_space_toggle,ctrl:swap_lalt_lctrl"
+    xkb_options "ctrl:nocaps,grp:win_space_toggle"
 }
 
 ### Key bindings
@@ -117,8 +126,8 @@ input type:keyboard {
 #
     # Move your focus around
     #bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
+    bindsym $mod+$down focus prev
+    bindsym $mod+$up focus next
     #bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
@@ -189,7 +198,7 @@ input type:keyboard {
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    #bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent

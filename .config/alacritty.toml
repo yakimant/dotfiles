@@ -81,10 +81,9 @@ bindings = [
 
 [scrolling]
 history = 100000
+multiplier = 15
 
 [terminal.shell]
-# Good bye, tmux
-#args = ["-l", "-c", "source ~/.zshrc; tmux attach 2> /dev/null || tmux"]
 program = "zsh"
 args = ["-l"]
 
