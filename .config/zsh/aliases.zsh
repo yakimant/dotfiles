@@ -33,7 +33,8 @@ alias l="ls -AF --color"
 alias ll="ls -aFhl --color"
 
 # other
-alias ..='cd ..'
+alias less='less -F -R'
+alias ..='cd ..' # TODO: autocd or smth
 alias h='fc -l 1'
 alias rm='rm -i '
 alias cp='cp -i '
@@ -47,5 +48,7 @@ alias ssh-agent-sk='killall ssh-agent; eval $(ssh-agent); ssh-add -k ~/.ssh/id_e
 alias agenix='agenix --identity ~/.passage/identities'
 alias age='age --identity ~/.passage/identities'
 alias markdownlint='markdownlint --config ~/.markdownlint.yaml'
-alias known-hosts-remove='sudo ssh-keygen -f ~/.ssh/known_hosts -R '
+alias known-hosts-remove='ssh-keygen -f ~/.ssh/known_hosts -R '
 #alias terraform='tofu'
+
+#alias vault_token_provider='gpg -qd ~/.passage/vault-token.gpg'

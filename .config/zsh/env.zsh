@@ -1,25 +1,29 @@
+# Nix
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
+# GPG
 export GPG_TTY="$(tty)"
 
+# Ripgrep
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
-
 
 # IFT
 export AGE_IDENTITIES="$HOME/.passage/identities"
 export LIDO_REMOTE_USER="yakimant"
 #export LIDO_REMOTE_CORES=4
-export ROLES_WORKERS=1
 
-export PURE_GIT_PULL=0
+# Pure Prompt
+zstyle :prompt:pure:git:stash show yes
 
 #export ANDROID_HOME="${HOMEBREW_PREFIX}/share/android-commandlinetools"
 #export ANDROID_SDK_ROOT="${ANDROID_HOME}"
 
+# Direnv
 eval "$(direnv hook zsh)"
 export DIRENV_LOG_FORMAT=
 export DIRENV_WARN_TIMEOUT=20s
 
+# FZF
 source <(fzf --zsh)
 
 path+=(
@@ -37,9 +41,14 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export XDG_STATE_HOME="${XFG_STATE_HOME:-$HOME/.local/state}"
   export XDG_RUNTIME_DIR="${XFG_RUNTIME_HOME:-$TMPDIR}"
 
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 
+  # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
   #export HOMEBREW_BUNDLE_FILE="${HOME}/.Brewfile"
   export HOMEBREW_NO_ENV_HINTS=1
 fi
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
+
+export PAGER="less -F -R"
+export SYSTEMD_LESS="-F -R"

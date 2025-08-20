@@ -1,3 +1,8 @@
+function i() {
+    export CONSUL_HTTP_TOKEN=$(pass services/consul/tokens/terraform)
+    export VAULT_TOKEN=$(gpg -qd ~/.passage/vault-token.gpg)
+}
+
 function src() {
     autoload -U zrecompile
     [[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
