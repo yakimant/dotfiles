@@ -1,4 +1,5 @@
 #alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory ~
+alt - return : open -na Alacritty
 
 alt - k : yabai -m query --spaces --space \
   | jq -re ".index" \

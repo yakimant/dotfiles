@@ -7,7 +7,7 @@ else
     alias vi='vim'
 fi
 
-export VISION="$EDITOR"
+export VISUAL="$EDITOR"
 
 alias intel='echo x86_64; arch -x86_64 zsh; arch'
 
