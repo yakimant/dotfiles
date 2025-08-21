@@ -1,6 +1,10 @@
 # Nix
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
+# Locale
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 # GPG
 export GPG_TTY="$(tty)"
 

@@ -1,6 +1,8 @@
 #alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory ~
 alt - return : open -na Alacritty
 
+alt - n : open -na "Alacritty" --args -t Notes -e nvim ~/work/*notes*/log.md
+
 alt - k : yabai -m query --spaces --space \
   | jq -re ".index" \
   | xargs -I{} yabai -m query --windows --space {} \
