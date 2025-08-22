@@ -91,7 +91,7 @@ bindings = [
 
 [scrolling]
 history = 100000
-multiplier = 20
+#multiplier = 20
 
 [terminal.shell]
 program = "zsh"

@@ -4,7 +4,7 @@ ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
 
 ln -fvs $HOME/work/dotfiles/bin $HOME/bin
 
-mkdir -p $HOME/.config
+mkdir -p $HOME/.config $HOME/.config/karabiner
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
 ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 ln -fvs $HOME/work/dotfiles/.config/tmux $HOME/.config/tmux
@@ -15,6 +15,7 @@ ln -fvs $HOME/work/dotfiles/.config/skhd $HOME/.config/skhd
 ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
 ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
+ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
 
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store

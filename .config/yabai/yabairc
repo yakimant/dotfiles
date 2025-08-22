@@ -61,9 +61,8 @@ yabai -m space 5 --label "misc"
 
 yabai -m rule --add app="Alacritty" title="Notes" manage=off
 
-yabai -m rule --add app="(Firefox)" space="^web"
-yabai -m rule --add app="(Mail|Discord|Status|Element|Telegram)" space="^comm"
-yabai -m rule --add app="(Brave Browser|Google Meet)" space="^meet"
+yabai -m rule --add app="(Firefox|Brave Browser)" space="^web"
+yabai -m rule --add app="(Google Meet|Mail|Discord|Status|Element|Telegram)" space="^comm"
 yabai -m rule --add app!="(Alacritty|Firefox|Brave Browser|Google Meet|Mail|Discord|Status|Element|Telegram)" space="^misc"
 
 # apps to not manage (ignore)

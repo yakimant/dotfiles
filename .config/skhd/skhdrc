@@ -1,7 +1,8 @@
 #alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory ~
-alt - return : open -na Alacritty
 
-alt - n : open -na "Alacritty" --args -t Notes -e nvim ~/work/*notes*/log.md
+alt - return : /opt/homebrew/bin/alacritty msg create-window || open -na Alacritty
+#alt - n : yabai -m query --windows | jq -r '.[] | select(.title | contains("Notes")) | .id' \
+#  | xargs -r -I{} yabai -m window --close {} && open -na "Alacritty" --args -t Notes -e nvim ~/work/ift-notes/log.md
 
 alt - k : yabai -m query --spaces --space \
   | jq -re ".index" \
