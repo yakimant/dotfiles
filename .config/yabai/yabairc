@@ -9,9 +9,6 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-#layout                       bsp            \
-#    window_animation_frame_rate  120            \
-# global settings - default
 yabai -m config                                 \
     mouse_follows_focus          off            \
     focus_follows_mouse          off            \
@@ -50,59 +47,26 @@ yabai -m config                                 \
 #yabai -m space 8 --padding abs:0:0:452:452
 #yabai -m space 9 --padding abs:0:0:452:452
 #yabai -m space 0 --padding abs:0:0:452:452
-#yabai -m space --balance
+yabai -m space --balance
 
-# custom
+# Spaces
 yabai -m space 1 --label "terminal"
 yabai -m space 2 --label "editor"
 yabai -m space 3 --label "web"
 yabai -m space 4 --label "comm"
 yabai -m space 5 --label "misc"
 
-yabai -m rule --add app="Alacritty" title="Notes" manage=off
-
+# Attach to spaces
 yabai -m rule --add app="(Firefox|Brave Browser)" space="^web"
 yabai -m rule --add app="(Google Meet|Mail|Discord|Status|Element|Telegram|Rocket.Chat)" space="^comm"
 yabai -m rule --add app!="(Alacritty|Firefox|Brave Browser|Google Meet|Mail|Discord|Status|Element|Telegram|Rocket.Chat)" space="^misc"
+yabai -m rule --add app="(Reeder)" space="^misc"
 
-# apps to not manage (ignore)
-#yabai -m rule --add app!="^(Reeder|MacGPT|UTM|Mail|Discord|Status|Typora|Finder|Firefox|Alacritty)$" manage=off
-#yabai -m rule --add app!="^(Typora|Firefox|Alacritty|Mail|Discord|Status)$"
+# Floating
 yabai -m rule --add title="^Page Info .*$" manage=off
 yabai -m rule --add title="Info$" manage=off
 yabai -m rule --add title="UTM" manage=off
-#yabai -m rule --add app="^System Settings$" manage=off
-#yabai -m rule --add app="^1Password$" manage=off
-#yabai -m rule --add app="^Cold Turkey Blocker$" manage=off
-#yabai -m rule --add app="^Extension:.*" manage=off
-#yabai -m rule --add app="^Google Meet$" manage=off
-
-#yabai -m signal --add event=window_created action="~/.config/yabai/three-columns.sh"
-#yabai -m signal --add event=window_destroyed action="~/.config/yabai/three-columns.sh"
-#yabai -m signal --add event=window_minimized action="~/.config/yabai/three-columns.sh"
-#yabai -m signal --add event=window_deminimized action="~/.config/yabai/three-columns.sh"
-#yabai -m signal --add event=space_changed action="~/.config/yabai/three-columns.sh"
-#
-#yabai -m signal --add event=window_resized action="~/.config/yabai/three-columns.sh"
-#yabai -m signal --add event=window_moved action="~/.config/yabai/three-columns.sh"
-
-#signals=(
-#   "space_changed"
-#   "display_added"
-#   "display_removed"
-#   "display_moved"
-#   "display_changed"
-#   "mission_control_enter"
-#   "mission_control_exit"
-#   "space_created"
-#   "space_destroyed"
-#)
-#for signal in "${signals[@]}"
-#do
-#   yabai --message signal \
-#         --add \
-#            event=$signal \
-#            action="osascript -e 'tell application \"Spaceman\" to refresh'"
-#done
+# Notes
+yabai -m rule --add app="Alacritty" title="Notes" manage=off
 
 echo "yabai configuration loaded.."
