@@ -1,0 +1,78 @@
+# - https://developers.openai.com/codex/config-reference/
+# - https://developers.openai.com/codex/config-sample/
+
+################################################################################
+# Security
+################################################################################
+
+# Safest:
+web_search = "disabled" # "cached"
+approval_policy = "untrusted" # untrusted < on-request < on-failure
+sandbox_mode = "read-only" # "workspace-write"
+
+# Defaults:
+# web_search = "cached"
+# approval_policy = "on-request"
+# sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+exclude_tmpdir_env_var = true  # $TMPDIR
+exclude_slash_tmp = true       # /tmp
+# writable_roots = ["/Users/YOU/.pyenv/shims"]
+network_access = false
+
+[shell_environment_policy]
+inherit = "none" # all, core
+ignore_default_excludes = true
+# exclude = ["AWS_*", "AZURE_*"]
+# set = { PATH = "/usr/bin", MY_FLAG = "1" }
+# include_only = ["PATH", "HOME"]
+
+[history]
+persistence = "save-all" # none
+
+[analytics]
+enabled = false
+
+################################################################################
+# Model
+################################################################################
+
+model = "gpt-5.3-codex"
+model_reasoning_effort = "medium"
+model_reasoning_summary = "auto"
+model_verbosity = "medium"
+model_supports_reasoning_summaries = false
+# model_context_window = 128000
+personality = "pragmatic"
+
+# oss_provider = "ollama" # or "lmstudio"
+# [model_providers.ollama]
+# name = "Ollama"
+# base_url = "http://localhost:11434/v1"
+# wire_api = "chat"
+
+################################################################################
+# Notifications
+################################################################################
+
+# notify = [
+#   "bash",
+#   "-lc",
+#   "osascript -e 'display notification \"Task finished!\" with title \"Codex\"'; afplay /System/Library/Sounds/Glass.aiff; say -v 'Daniel' 'Finished!';",
+# ]
+# notify = ["osascript", "-e", "on run argv\n display notification (item 1 of argv) with title \"Codex\"\n end run"]
+notify = ["osascript", "-e", "display notification \"Notify\" with title \"Codex\""]
+
+################################################################################
+# TUI
+################################################################################
+
+[tui]
+notifications = true
+notification_method = "auto"
+animations = true
+show_tooltips = false
+alternate_screen = "always" # auto, always, never
+
+check_for_update_on_startup = false

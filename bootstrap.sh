@@ -17,6 +17,9 @@ ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
 
+ln -fvs $HOME/work/dotfiles/.colima/default/colima.yaml $HOME/.colima/default/colima.yaml
+ln -fvs $HOME/work/dotfiles/.codex/config.toml $HOME/.codex/config.toml
+
 #rm -i $HOME/.passage/store
 #ln -fvs $HOME/work/secrets $HOME/.passage/store
 
