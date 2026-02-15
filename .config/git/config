@@ -5,12 +5,15 @@
 [commit]
   gpgsign = true
 [gpg]
-	format = ssh
+  format = ssh
 [core]
   whitespace = trailing-space,space-before-tab
   hooksPath = ~/.config/git/hooks
 [submodule]
-	recurse = true
+  recurse = true
+  fetchJobs = 8
+[fetch]
+  recurseSubmodules = on-demand
 [color]
   ui = true
 [push]
@@ -19,5 +22,7 @@
   whitespace = fix
 [user]
   useConfigOnly = true
+[http]
+  maxRequests = 8
 [include]
   path = ~/.config/git/workspace.inc
