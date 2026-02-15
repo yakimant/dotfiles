@@ -15,3 +15,5 @@
 --glob=!**/extensions/pluto.js
 --glob=!**/.yarn/releases/*.cjs
 --glob=!.git
+--max-columns=200
+--max-columns-preview
