@@ -30,12 +30,10 @@ export DIRENV_WARN_TIMEOUT=20s
 # FZF
 source <(fzf --zsh)
 
-path+=(
-  "$HOME/bin"
+path=("$HOME/bin" $path)
 #  "$(go env GOPATH)/bin"
 #  "${ANDROID_HOME}/emulator"
 #  "${ANDROID_HOME}/platform-tools"
-)
 
 if [[ "$OSTYPE" == darwin* ]]; then
   # https://specifications.freedesktop.org/basedir-spec/latest/
@@ -53,6 +51,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export PAGER="less -F -R"
 export SYSTEMD_LESS="-F -R"

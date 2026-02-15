@@ -32,6 +32,12 @@ alias gmv='git mv'
 alias l="ls -AF --color"
 alias ll="ls -aFhl --color"
 
+# sudo shows more
+alias htop="sudo htop"
+alias ps="sudo ps"
+alias lsof="sudo lsof"
+alias pstree="sudo pstree"
+
 # other
 alias less='less -F -R'
 alias ..='cd ..' # TODO: autocd or smth

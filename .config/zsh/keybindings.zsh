@@ -18,3 +18,6 @@ bindkey '^a' select-work-dir
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^E" edit-command-line
+
+# I want to rely on CAPS more
+# bindkey -r '^['

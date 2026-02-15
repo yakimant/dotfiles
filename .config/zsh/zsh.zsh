@@ -12,3 +12,6 @@ setopt GLOBDOTS                       # lets files beginning with a . be matched
 # Dir Stacks
 DIRSTACKSIZE=8
 setopt autopushd pushdminus pushdsilent pushdtohome
+
+# For macOS log
+disable log
