@@ -48,10 +48,36 @@ if [[ "$OSTYPE" == darwin* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   #export HOMEBREW_BUNDLE_FILE="${HOME}/.Brewfile"
   export HOMEBREW_NO_ENV_HINTS=1
+  export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_CLEANUP_MAX_AGE_DAYS=15
 fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-export PAGER="less -F -R"
-export SYSTEMD_LESS="-F -R"
+export PAGER="less"
+export LESS="FRXMK"
+export SYSTEMD_PAGER="less"
+export SYSTEMD_LESS="FRXMK"
+
+export GOPASS_AGE_PASSWORD="YUBIKEYDOESNTNEEDPAPASSWORD"
+
+export PINENTRY_PROGRAM="${HOME}/bin/pinentry-env"
+# export PINENTRY_PROGRAM="/run/current-system/sw/bin/pinentry-mac"
+
+
+# TODO: only proxy whitelist of services (discord etc)
+export NO_PROXY="localhost,127.0.0.1,::1,*.local,169.254.0.0/16,10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fc00::/7,fe80::/10,.infra.develp.co,.ts.net"
+
+# INFO: terraform doesnt understand 5h
+export HTTPS_PROXY="socks5://127.0.0.1:1080"
+
+# export _PROXY="socks5h://127.0.0.1:1080"
+# export HTTP_PROXY="$_PROXY"
+# export http_proxy="$_PROXY"
+
+# export FTP_PROXY="$ALL_PROXY"
+# export ftp_proxy="$ALL_PROXY"
+# export https_proxy="$_PROXY"
+# export all_proxy="$ALL_PROXY"
+# export no_proxy="$NO_PROXY"

@@ -52,9 +52,23 @@ alias ansible='ansible -f1'
 alias ansible-playbook='ansible-playbook -f1'
 alias ssh-agent-sk='killall ssh-agent; eval $(ssh-agent); ssh-add -k ~/.ssh/id_ed25519_sk_no_touch ~/.ssh/id_ed25519_sk_touch'
 alias agenix='agenix --identity ~/.passage/identities'
-alias age='age --identity ~/.passage/identities'
-alias markdownlint='markdownlint --config ~/.markdownlint.yaml'
+alias age='rage --identity ~/.passage/identities'
+alias rage='rage --identity ~/.passage/identities'
+# alias markdownlint='markdownlint --config ~/.markdownlint.yaml'
+alias markdownlint-cli2='markdownlint-cli2 --config ~/.config/.markdownlint-cli2.yaml'
 alias known-hosts-remove='ssh-keygen -f ~/.ssh/known_hosts -R '
 #alias terraform='tofu'
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias ping='/sbin/ping'
+  alias ping6='/sbin/ping6'
+fi
+
 #alias vault_token_provider='gpg -qd ~/.passage/vault-token.gpg'
+
+# alias codex="$HOME/bin/codex"
+# alias opencode="$HOME/bin/opencode"
+alias codex='docker sandbox run codex --'
+alias opencode='docker sandbox run opencode --'
+# alias pass="gopass"
+alias mosh='mosh --no-init'
