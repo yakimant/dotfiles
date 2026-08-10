@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Original: https://github.com/jakubgs/dotfiles/blob/master/bin/git-url
+# Script for getting URL(s) of current commit.
+# Should work as `git url` if it's in your $PATH.
+
+function usage() {
+    echo "Usage: $0 [-h|-m|-f|-r] <REV> [REV] ..." 1>&2
+    echo "  -h - Show help."
+    echo "  -m - Show messages."
+    echo "  -f - Format as markdown."
+    echo "  -r - Revert order."
+    exit 1
+}
+
+function git_remote_url_raw() {
+    git config --get remote.origin.url
+}
+
+function git_remote_url() {
+     git_remote_url_raw | sed -E -e 's;.git$;;' \
+        -e 's;^git@([^:]+):(.+)/(.+)$;https://\1/\2/\3;'
+}
+
+function git_remote_name() {
+     git_remote_url_raw | sed -E -e 's;.git$;;' \
+        -e 's;^git@([^:]+):(.+)/(.+)$;\3;'
+}
+
+function show_commit() {
+    GIT_COMMIT=$(git rev-parse ${1})
+    GIT_MESSAGE=$(git show --pretty=format:%s -s ${1})
+
+    # Use only the first 8 characters of Git SHA1
+    COMMIT_URL="$(git_remote_url)/commit/${GIT_COMMIT::8}"
+
+    RVAL=''
+    if [[ "${MARKDOWN_LIST}" -eq 1 ]]; then
+        RVAL='- '
+    fi
+    if [[ "${MARKDOWN_FORMAT}" -eq 1 ]]; then
+        RVAL+="[\`$(git_remote_name)#${GIT_COMMIT::8}\`](${COMMIT_URL})"
+    else
+        RVAL+="${COMMIT_URL}"
+    fi
+    if [[ "${SHOW_MESSAGE}" -eq 1 ]]; then
+        RVAL+=" - ${GIT_MESSAGE}"
+    fi
+    echo -n "${RVAL}"
+}
+
+function git_show_revs() {
+    OPTS=''
+    if [[ ! "${1}" =~ \.\. ]]; then
+        OPTS='--max-count=1'
+    fi
+    OUTPUT=$(git log --format=%H ${OPTS} ${1})
+    # git log format shows commits with oldest first
+    if [[ "${REVERT_ORDER}" -eq 1 ]]; then
+        echo "${OUTPUT}" | tac
+    else
+        echo "${OUTPUT}"
+    fi
+}
+
+SHOW_MESSAGE=0
+MARKDOWN_FORMAT=0
+MARKDOWN_LIST=0
+REVERT_ORDER=0
+while getopts "h?m?f?l?r?" o; do
+    case "${o}" in
+        m) SHOW_MESSAGE=1;;
+        f) MARKDOWN_FORMAT=1;;
+        l) MARKDOWN_LIST=1;;
+        r) REVERT_ORDER=1;;
+        h|*) usage;;
+    esac
+done
+shift $((OPTIND-1))
+
+# Curly brace block combines output of the whole if for tee.
+{
+if [[ "${#}" -eq 0 ]]; then
+    show_commit "HEAD"
+else
+    while [[ "${#}" -gt 0 ]]; do
+        for SHA1 in $(git_show_revs ${1}); do
+            show_commit "${SHA1}"
+            # without echo all URLs would be in one line
+            echo
+        done
+        shift
+    done
+fi
+} | tee >(pbcopy)

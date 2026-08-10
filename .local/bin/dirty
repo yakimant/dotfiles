@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#set -euo pipefail
+
+WORK_DIR="${HOME}/work"
+
+cd $WORK_DIR
+dirs=$(find . -type d -mindepth 1 -maxdepth 1)
+
+for dir in $dirs; do
+  cd "${WORK_DIR}/${dir}"
+  git_status=$( git status -s 2>&1 )
+  git_status_code=$?
+  if [ $git_status_code -eq 0 ]; then
+    if [ "${git_status}" != "" ]; then
+      echo "== ${dir}"
+      git status -s
+    fi
+  fi
+done

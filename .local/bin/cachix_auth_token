@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gopass show --password yakimant/ift/cachix-auth-token

@@ -38,26 +38,27 @@ alias ps="sudo ps"
 alias lsof="sudo lsof"
 alias pstree="sudo pstree"
 
+# age identities
+export AGE_IDENTITIES="$HOME/.config/age/identities"
+# alias agenix="agenix --identity ${AGE_IDENTITIES}"
+alias age="rage --identity ${AGE_IDENTITIES}"
+alias rage="rage --identity ${AGE_IDENTITIES}"
+
 # other
 alias less='less -F -R'
 alias ..='cd ..' # TODO: autocd or smth
 alias h='fc -l 1'
-alias rm='rm -i '
-alias cp='cp -i '
-alias mv='mv -i '
 alias grep='grep -i --color'
 alias df='df -h'
 alias dirs='dirs -v'
 alias ansible='ansible -f1'
 alias ansible-playbook='ansible-playbook -f1'
 alias ssh-agent-sk='killall ssh-agent; eval $(ssh-agent); ssh-add -k ~/.ssh/id_ed25519_sk_no_touch ~/.ssh/id_ed25519_sk_touch'
-alias agenix='agenix --identity ~/.passage/identities'
-alias age='rage --identity ~/.passage/identities'
-alias rage='rage --identity ~/.passage/identities'
 # alias markdownlint='markdownlint --config ~/.markdownlint.yaml'
 alias markdownlint-cli2='markdownlint-cli2 --config ~/.config/.markdownlint-cli2.yaml'
 alias known-hosts-remove='ssh-keygen -f ~/.ssh/known_hosts -R '
 #alias terraform='tofu'
+alias nix="nix --log-format raw"
 
 if [[ "$OSTYPE" == darwin* ]]; then
   alias ping='/sbin/ping'

@@ -1,12 +1,14 @@
-local HOME = os.getenv("HOME")
-
 return {
-  "mfussenegger/nvim-lint",
-  optional = true,
-  opts = {
-    linters = {
-      ["markdownlint-cli2"] = {
-        args = { "--config", HOME .. "/.markdownlint-cli2.yaml", "--" },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        ["markdownlint-cli2"] = {
+          prepend_args = { "--config", os.getenv("XDG_CONFIG_HOME") .. "/.markdownlint-cli2.yaml", "--" },
+        },
+      },
+      linters_by_ft = {
+        make = { "checkmake" },
       },
     },
   },

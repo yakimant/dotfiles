@@ -8,3 +8,5 @@
 .config/yabai/yabai
 .config/skhd/skhd
 .config/ncdu/ncdu
+.config/sway/sway
+.config/nvim/lazy-lock.json

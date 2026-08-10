@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+~/.config/yabai/yabairc
+
+exit 0
+
 echo "= procs:"
 ps aux | grep office | grep -v fix_yabai | grep -v yabairc | grep -v "(yabai)" | grep -e [y]abai -e [s]khd
 

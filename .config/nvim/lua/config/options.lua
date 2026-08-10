@@ -22,8 +22,8 @@ local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТ�
 --     escape(ru) .. ';' .. escape(en),
 -- }, ',')
 
-vim.opt.updatetime=1000
-vim.opt.updatecount=10
-vim.opt.conceallevel=0
+vim.opt.updatetime = 1000
+vim.opt.updatecount = 10
+vim.opt.conceallevel = 0
 
 vim.o.mouse = ""

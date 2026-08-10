@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+#passage ift/vault_token
+#gpg -qd ~/.passage/vault-token.gpg
+# gopass yakimant/ift/vault_token
+gopass --password yakimant/ift/vault_token

@@ -49,3 +49,9 @@ function select-work-dir() {
     echo
     zle reset-prompt
 }
+
+function rm() { command rm "$@" -i }
+
+function cp() { command cp "$@" -i }
+
+function mv() { command mv "$@" -i }

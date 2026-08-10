@@ -1,14 +1,9 @@
 fpath+=($HOME/.config/zsh/pure)
 
 autoload colors         # enable colors
-autoload -U compinit    # enable auto completion
 autoload -U promptinit  # advanced prompts support
 colors                  # initialize
-compinit -u             # longest wait
 promptinit
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 prompt pure
 

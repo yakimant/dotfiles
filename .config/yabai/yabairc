@@ -50,12 +50,12 @@ yabai -m space --balance
 # Spaces
 
 # Ensure at least 5 spaces exist
-current="$(yabai -m query --spaces | jq 'length' 2>/dev/null || echo 0)"
-while [ "$current" -lt 5 ]; do
-  yabai -m space --create || break
-  sleep 1
-  current="$(yabai -m query --spaces | jq 'length' 2>/dev/null || echo 0)"
-done
+#current="$(yabai -m query --spaces | jq 'length' 2>/dev/null || echo 0)"
+#while [ "$current" -lt 5 ]; do
+#  yabai -m space --create || break
+#  sleep 1
+#  current="$(yabai -m query --spaces | jq 'length' 2>/dev/null || echo 0)"
+#done
 
 yabai -m space 1 --label "terminal"
 yabai -m space 2 --label "editor"

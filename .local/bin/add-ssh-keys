@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+keys_to_add=(
+  "id_ed25519_sk_no_touch_24553389"
+  "id_ed25519_sk_touch_24553389"
+)
+keys_ssh_agent=$(ssh-add -l | cut -d' ' -f2 || echo "")
+
+for key in "${keys_to_add[@]}"; do
+  fingerprint=$(ssh-keygen -lf ~/.ssh/$key | cut -d' ' -f2)
+  if [[ $keys_ssh_agent != *"${fingerprint}"* ]]; then
+    ssh-add ~/.ssh/$key
+  fi
+done

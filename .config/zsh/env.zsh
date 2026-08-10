@@ -12,7 +12,6 @@ export GPG_TTY="$(tty)"
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
 # IFT
-export AGE_IDENTITIES="$HOME/.passage/identities"
 export LIDO_REMOTE_USER="yakimant"
 #export LIDO_REMOTE_CORES=4
 
@@ -30,7 +29,7 @@ export DIRENV_WARN_TIMEOUT=20s
 # FZF
 source <(fzf --zsh)
 
-path=("$HOME/bin" $path)
+path=("$HOME/.local/bin" $path)
 #  "$(go env GOPATH)/bin"
 #  "${ANDROID_HOME}/emulator"
 #  "${ANDROID_HOME}/platform-tools"
@@ -41,7 +40,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
   export XDG_DATA_HOME="${XFG_DATA_HOME:-$HOME/.local/share}"
   export XDG_STATE_HOME="${XFG_STATE_HOME:-$HOME/.local/state}"
-  export XDG_RUNTIME_DIR="${XFG_RUNTIME_HOME:-$TMPDIR}"
+  export XDG_RUNTIME_DIR="${XFG_RUNTIME_DIR:-$TMPDIR}"
 
 
   # Homebrew
@@ -54,6 +53,8 @@ fi
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+export AQT_CONFIG="$HOME/.config/aqt/settings.ini"
 
 export PAGER="less"
 export LESS="FRXMK"
@@ -69,15 +70,17 @@ export PINENTRY_PROGRAM="${HOME}/bin/pinentry-env"
 # TODO: only proxy whitelist of services (discord etc)
 export NO_PROXY="localhost,127.0.0.1,::1,*.local,169.254.0.0/16,10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fc00::/7,fe80::/10,.infra.develp.co,.ts.net"
 
-# INFO: terraform doesnt understand 5h
-export HTTPS_PROXY="socks5://127.0.0.1:1080"
+# cachix
+export HTTPS_PROXY="http://127.0.0.1:8080"
 
-# export _PROXY="socks5h://127.0.0.1:1080"
+export ALL_PROXY="socks5h://127.0.0.1:1080"
+
+# for curl
+export https_proxy="$HTTPS_PROXY"
+
 # export HTTP_PROXY="$_PROXY"
 # export http_proxy="$_PROXY"
-
 # export FTP_PROXY="$ALL_PROXY"
 # export ftp_proxy="$ALL_PROXY"
-# export https_proxy="$_PROXY"
 # export all_proxy="$ALL_PROXY"
 # export no_proxy="$NO_PROXY"

@@ -4,6 +4,7 @@
   defaultRemote = origin
 [commit]
   gpgsign = true
+  verbose = true
 [gpg]
   format = ssh
 [core]
@@ -17,7 +18,8 @@
 [color]
   ui = true
 [push]
-  default = current
+  default = simple
+  autoSetupRemote = true
 [apply]
   whitespace = fix
 [user]
@@ -26,3 +28,12 @@
   maxRequests = 8
 [include]
   path = ~/.config/git/workspace.inc
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[pull]
+  rebase = true
+[rebase]
+  autoStash = true

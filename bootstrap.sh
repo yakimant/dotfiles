@@ -2,7 +2,7 @@
 
 ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
 
-ln -fvs $HOME/work/dotfiles/bin $HOME/bin
+ln -fvs $HOME/work/dotfiles/.local/bin $HOME/.local/bin
 
 mkdir -p $HOME/.config $HOME/.config/karabiner
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
@@ -16,6 +16,7 @@ ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
 ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
+ln -fvs $HOME/work/dotfiles/.config/.markdownlint-cli2.yaml $HOME/.config/.markdownlint-cli2.yaml
 
 ln -fvs $HOME/work/dotfiles/.colima/default/colima.yaml $HOME/.colima/default/colima.yaml
 ln -fvs $HOME/work/dotfiles/.codex/config.toml $HOME/.codex/config.toml
