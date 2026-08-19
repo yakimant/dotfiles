@@ -30,6 +30,8 @@ ln -fvs $HOME/work/dotfiles/.codex/config.toml $HOME/.codex/config.toml
 
 mkdir -p $HOME/.ssh/sockets
 ln -fvs $HOME/work/dotfiles/.ssh/config $HOME/.ssh/config
+ln -fvs $HOME/work/dotfiles/.ssh/config.local.defaults.example $HOME/.ssh/config.local.defaults.example
+ln -fvs $HOME/work/dotfiles/.ssh/config.local.override.example $HOME/.ssh/config.local.override.example
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389 $HOME/.ssh/id_ed25519_sk_no_touch
 #ln -fvs $HOME/.ssh/id_ed25519_sk_no_touch_24553389.pub $HOME/.ssh/id_ed25519_sk_no_touch.pub
 #ln -fvs $HOME/.ssh/id_ed25519_sk_touch_24553389 $HOME/.ssh/id_ed25519_sk_touch
