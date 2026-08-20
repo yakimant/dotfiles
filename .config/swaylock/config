@@ -1,0 +1,14 @@
+color=1e1e2e
+
+font=monospace
+font-size=24
+
+indicator-radius=100
+indicator-thickness=8
+
+clock
+timestr=%H:%M
+
+show-failed-attempts
+
+ignore-empty-password
