@@ -15,6 +15,7 @@ ln -fvs $HOME/work/dotfiles/.config/skhd $HOME/.config/skhd
 ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
 ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
+ln -fvs $HOME/work/dotfiles/.config/swaylock $HOME/.config/swaylock
 ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
 ln -fvs $HOME/work/dotfiles/.config/.markdownlint-cli2.yaml $HOME/.config/.markdownlint-cli2.yaml
 
