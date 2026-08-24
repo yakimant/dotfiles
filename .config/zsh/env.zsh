@@ -51,6 +51,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export HOMEBREW_CLEANUP_MAX_AGE_DAYS=15
 fi
 
+export SSH_ASKPASS_REQUIRE=never
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
