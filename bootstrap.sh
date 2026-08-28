@@ -13,6 +13,7 @@ ln -fvs $HOME/work/dotfiles/.config/alacritty.toml $HOME/.config/alacritty.toml
 ln -fvs $HOME/work/dotfiles/.config/ripgreprc $HOME/.config/ripgreprc
 ln -fvs $HOME/work/dotfiles/.config/skhd $HOME/.config/skhd
 ln -fvs $HOME/work/dotfiles/.config/yabai $HOME/.config/yabai
+ln -fvs $HOME/work/dotfiles/.config/nono $HOME/.config/nono
 ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 ln -fvs $HOME/work/dotfiles/.config/swaylock $HOME/.config/swaylock

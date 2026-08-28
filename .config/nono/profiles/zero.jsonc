@@ -1,0 +1,84 @@
+{
+  // nono profile schema --output nono-profile.schema.json
+  "$schema": "../nono-profile.schema.json",
+
+  "meta": {
+    "name": "zero",
+  },
+
+  "security": {
+    "signal_mode": "isolated",
+    "process_info_mode": "isolated",
+    "ipc_mode": "shared_memory_only",
+    "capability_elevation": false,
+    "wsl2_proxy_policy": "error",
+  },
+
+  // Linux only:
+  "linux": {
+    "af_unix_mediation": "pathname",
+  },
+
+  "groups": {
+    "include": [],
+    "exclude": ["user_tools"],
+  },
+
+  "workdir": {
+    "access": "none",
+  },
+
+  "filesystem": {
+    "allow": [],
+    "read": [],
+    "write": [],
+    "allow_file": [],
+    "read_file": [],
+    "write_file": [],
+    "deny": [],
+    "bypass_protection": [],
+    "suppress_save_prompt": [],
+  },
+
+  "network": {
+    "block": false,
+    "allow_http2": false,
+    "network_profile": null,
+    "allow_domain": ["example.com"],
+    "credentials": [],
+    "open_port": [],
+    "listen_port": [],
+    "custom_credentials": {},
+    "upstream_proxy": null,
+    "upstream_bypass": [],
+  },
+
+  "environment": {
+    "deny_vars": ["*"],
+    "set_vars": {},
+  },
+
+  "env_credentials": {},
+
+  "credential_capture": {},
+  "credential_providers": {},
+  "credential_routes": [],
+
+  "open_urls": {
+    "allow_origins": [],
+    "allow_localhost": false,
+  },
+
+  "allow_launch_services": false,
+  "allow_gpu": false,
+
+  "hooks": {},
+  "session_hooks": {},
+
+  "unsafe_macos_seatbelt_rules": [],
+
+  "rollback": {
+    "exclude_patterns": [],
+    "exclude_globs": [],
+  },
+}
