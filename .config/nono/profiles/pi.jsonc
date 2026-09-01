@@ -1,0 +1,23 @@
+{
+  "extends": ["strict"],
+  "meta": {
+    "name": "pi",
+    "description": "Personal PI",
+  },
+
+  "filesystem": {
+    "suppress_save_prompt": ["/Users", "$HOME/.CFUserTextEncoding"],
+    "allow": ["$HOME/.config/pi", "$HOME/.local/state/pi"],
+  },
+
+  "environment": {
+    "deny_vars": ["*"],
+    "set_vars": {
+      "PI_CODING_AGENT_DIR": "$HOME/.config/pi",
+      "PI_CODING_AGENT_SESSION_DIR": "$HOME/.local/state/pi/sessions",
+    },
+  },
+  "diagnostics": {
+    "suppress_system_services": ["user-preference-read"],
+  },
+}

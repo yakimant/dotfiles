@@ -1,11 +1,12 @@
 {
-  // nono profile schema --output nono-profile.schema.json
   "$schema": "../nono-profile.schema.json",
-
+  "extends": ["default"],
   "meta": {
-    "name": "zero",
+    "name": "strict",
+    "version": "",
+    "description": "Stricter default",
+    "author": null,
   },
-
   "security": {
     "signal_mode": "isolated",
     "process_info_mode": "isolated",
@@ -13,21 +14,14 @@
     "capability_elevation": false,
     "wsl2_proxy_policy": "error",
   },
-
-  // Linux only:
-  "linux": {
-    "af_unix_mediation": "pathname",
-  },
-
   "groups": {
     "include": [],
     "exclude": ["user_tools"],
   },
-
-  "workdir": {
-    "access": "none",
+  "commands": {
+    "allow": [],
+    "deny": [],
   },
-
   "filesystem": {
     "allow": [],
     "read": [],
@@ -35,50 +29,66 @@
     "allow_file": [],
     "read_file": [],
     "write_file": [],
+    "unix_socket": [],
+    "unix_socket_bind": [],
+    "unix_socket_dir": [],
+    "unix_socket_dir_bind": [],
+    "unix_socket_subtree": [],
+    "unix_socket_subtree_bind": [],
     "deny": [],
     "bypass_protection": [],
     "suppress_save_prompt": [],
   },
-
   "network": {
     "block": false,
     "allow_http2": false,
     "network_profile": null,
-    "allow_domain": ["example.com"],
+    "allow_domain": ["nono-baseline.invalid"],
+    "deny_domain": [],
     "credentials": [],
     "open_port": [],
+    "open_port_range": [],
     "listen_port": [],
+    "listen_port_range": [],
+    "connect_port": [],
     "custom_credentials": {},
-    "upstream_proxy": null,
+    "tls_intercept": null,
+    "upstream_proxy": "127.0.0.1:8080",
     "upstream_bypass": [],
   },
-
+  "diagnostics": {
+    "suppress_system_services": [],
+  },
+  "linux": {
+    "af_unix_mediation": "pathname",
+    "sandbox_policy": null,
+  },
+  "env_credentials": {},
   "environment": {
     "deny_vars": ["*"],
     "set_vars": {},
   },
-
-  "env_credentials": {},
-
   "credential_capture": {},
   "credential_providers": {},
   "credential_routes": [],
-
-  "open_urls": {
-    "allow_origins": [],
-    "allow_localhost": false,
+  "workdir": {
+    "access": "none",
   },
-
-  "allow_launch_services": false,
-  "allow_gpu": false,
-
   "hooks": {},
   "session_hooks": {},
-
-  "unsafe_macos_seatbelt_rules": [],
-
   "rollback": {
     "exclude_patterns": [],
     "exclude_globs": [],
   },
+  "open_urls": {
+    "allow_origins": [],
+    "allow_localhost": false,
+  },
+  "allow_launch_services": false,
+  "allow_gpu": false,
+  "interactive": false,
+  "skipdirs": [],
+  "packs": [],
+  "command_args": [],
+  "unsafe_macos_seatbelt_rules": [],
 }
