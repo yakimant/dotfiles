@@ -2,7 +2,7 @@
   "extends": ["pi"],
   "meta": {
     "name": "pi-codex",
-    "description": "Personal PI Codex",
+    "description": "PI Codex",
   },
   "network": {
     "allow_domain": ["auth.openai.com", "chatgpt.com"],

@@ -2,7 +2,7 @@
   "extends": ["strict"],
   "meta": {
     "name": "pi",
-    "description": "Personal PI",
+    "description": "PI",
   },
 
   "filesystem": {

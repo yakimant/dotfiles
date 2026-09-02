@@ -1,10 +1,11 @@
 {
+  // nono profile schema --output nono-profile.schema.json
   "$schema": "../nono-profile.schema.json",
   "extends": ["default"],
   "meta": {
     "name": "strict",
     "version": "",
-    "description": "Stricter default",
+    "description": "Strict default skeleton",
     "author": null,
   },
   "security": {
@@ -27,7 +28,7 @@
     "read": [],
     "write": [],
     "allow_file": [],
-    "read_file": [],
+    "read_file": ["$HOME/.local/bin/pi"],
     "write_file": [],
     "unix_socket": [],
     "unix_socket_bind": [],
@@ -35,7 +36,65 @@
     "unix_socket_dir_bind": [],
     "unix_socket_subtree": [],
     "unix_socket_subtree_bind": [],
-    "deny": [],
+    "deny": [
+      // SSH / crypto / password stores
+      "$HOME/.ssh",
+      "$HOME/.gnupg",
+      "$HOME/.password-store",
+      "$HOME/.passage",
+      "$HOME/.local/share/gopass/stores",
+
+      "$HOME/.zsh_history",
+
+      // Cloud / infrastructure credentials
+      "$HOME/.aws",
+      "$HOME/.azure",
+      "$HOME/.docker",
+      "$HOME/.terraform.d",
+      "$HOME/.boto",
+      "$HOME/.s3cfg",
+      "$HOME/.kube",
+      "$HOME/.config/yandex-cloud",
+      "$HOME/.config/hcloud/cli.toml",
+      "$HOME/.config/gcloud",
+      "$HOME/.config/nix/netrc",
+      "$HOME/.config/cachix",
+
+      // Sensitive
+      "$HOME/.local/share/signal-cli",
+      "$HOME/.local/share/weechat",
+      "$HOME/.local/state/.copilot",
+      "$HOME/.local/state/nono",
+
+      // Credential/session tokens
+      "$HOME/.bwsession",
+
+      // Protect the sandbox configuration itself
+      "$HOME/.config/nono",
+
+      // macOS credentials
+      "$HOME/Library/Keychains",
+
+      // Personal / synced data where writes can have large blast radius
+      "$HOME/Documents",
+      "$HOME/Downloads",
+      "$HOME/Desktop",
+      "$HOME/Library/CloudStorage",
+      "$HOME/My Drive",
+      "$HOME/Google Drive",
+
+      // Workdir secrets
+      "$WORKDIR/.env",
+      "$WORKDIR/.env.local",
+      "$WORKDIR/.env.production",
+      "$WORKDIR/.env.development",
+      "$WORKDIR/.env.test",
+      "$WORKDIR/.envrc",
+
+      "$WORKDIR/.npmrc",
+      "$WORKDIR/.pypirc",
+      "$WORKDIR/.netrc",
+    ],
     "bypass_protection": [],
     "suppress_save_prompt": [],
   },

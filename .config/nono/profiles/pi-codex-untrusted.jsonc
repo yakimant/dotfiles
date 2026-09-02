@@ -1,0 +1,10 @@
+{
+  "extends": ["pi-codex"],
+  "meta": {
+    "name": "pi-codex-untrusted",
+    "description": "PI Codex - Untrusted Project",
+  },
+  "workdir": {
+    "access": "read",
+  },
+}
