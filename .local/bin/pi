@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TRUST_FILE="$HOME/.config/pi/trust.json"
+REAL_PI="/run/current-system/sw/bin/pi"
+cwd="$(pwd -P)"
+
+trusted="$(
+  jq -r --arg cwd "$cwd" '.[$cwd] // false' "$TRUST_FILE" 2>/dev/null \
+    || printf 'false'
+)"
+
+nono_args=()
+pi_args=()
+
+if [[ -d "$cwd/.git" ]]; then
+  nono_args+=(--silent --allow-cwd)
+fi
+
+if [[ "$trusted" == "true" ]]; then
+  profile="pi-codex-trusted"
+else
+  profile="pi-codex-untrusted"
+  pi_args+=(--no-context-files --no-session)
+fi
+
+printf 'nono: %s\n' "$profile" >&2
+
+exec nono run \
+  --profile "$profile" \
+  "${nono_args[@]}" \
+  -- ${REAL_PI} \
+  "${pi_args[@]}" \
+  "$@"
