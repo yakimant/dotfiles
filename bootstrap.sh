@@ -4,7 +4,7 @@ ln -fvs $HOME/work/dotfiles/.zshrc $HOME/.zshrc
 
 ln -fvs $HOME/work/dotfiles/.local/bin $HOME/.local/bin
 
-mkdir -p $HOME/.config $HOME/.config/karabiner
+mkdir -p $HOME/.config $HOME/.config/karabiner $HOME/.config/pi
 ln -fvs $HOME/work/dotfiles/.config/nvim $HOME/.config/nvim
 ln -fvs $HOME/work/dotfiles/.config/git $HOME/.config/git
 ln -fvs $HOME/work/dotfiles/.config/tmux $HOME/.config/tmux
@@ -18,6 +18,7 @@ ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 ln -fvs $HOME/work/dotfiles/.config/swaylock $HOME/.config/swaylock
 ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
+ln -fvs $HOME/work/dotfiles/.config/pi/settings.json $HOME/.config/pi/settings.json
 ln -fvs $HOME/work/dotfiles/.config/.markdownlint-cli2.yaml $HOME/.config/.markdownlint-cli2.yaml
 
 ln -fvs $HOME/work/dotfiles/.colima/default/colima.yaml $HOME/.colima/default/colima.yaml

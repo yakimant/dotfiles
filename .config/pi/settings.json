@@ -1,0 +1,22 @@
+{
+  "lastChangelogVersion": "0.81.1",
+  "theme": "light",
+  "defaultProjectTrust": "ask",
+  "quietStartup": true,
+  "packages": [],
+  "extensions": [],
+  "skills": [],
+  "prompts": [],
+  "themes": [],
+  "enableInstallTelemetry": false,
+  "enableAnalytics": false,
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "doubleEscapeAction": "tree",
+  "httpIdleTimeoutMs": 300000,
+  "transport": "auto",
+  "compaction": {
+    "enabled": true
+  }
+}
