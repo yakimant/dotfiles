@@ -1,0 +1,621 @@
+#!/usr/bin/env zsh
+
+verbose=0
+triggered_only=0
+ack_triggered=0
+resolve_alerts=0
+
+receiver_key=default
+receiver_set=0
+host_filter=""
+
+while (( $# > 0 )); do
+  case "$1" in
+    --verbose|-v)
+      verbose=1
+      shift
+      ;;
+
+    --triggered-only|-t)
+      triggered_only=1
+      shift
+      ;;
+
+    --ack|-a)
+      ack_triggered=1
+      shift
+      ;;
+
+    --resolve|-r)
+      resolve_alerts=1
+      shift
+      ;;
+
+    --host|-H)
+      if (( $# < 2 )); then
+        echo "Missing value for $1"
+        exit 1
+      fi
+
+      host_filter="$2"
+      shift 2
+      ;;
+
+    --host=*)
+      host_filter="${1#--host=}"
+      shift
+      ;;
+
+    --help|-h)
+      echo "Usage: rootly-alerts-table [receiver] [options]"
+      echo
+      echo "Receivers:"
+      echo "  (none)           all receivers, critical statuses"
+      echo "  infra            rootly-alerts-hq-critical"
+      echo "  infra-warning    rootly-alerts-hq-warning"
+      echo "  develp           lido-infra-critical"
+      echo "  develp-warning   lido-infra-warning"
+      echo
+      echo "Options:"
+      echo "  -v, --verbose         show date, alert ID and consul check names"
+      echo "  -t, --triggered-only  show triggered alerts only"
+      echo "  -a, --ack             acknowledge matching triggered alerts"
+      echo "  -r, --resolve         resolve matching open + acknowledged alerts"
+      echo "  -H, --host HOST       filter by host substring"
+      exit 0
+      ;;
+
+    -*)
+      echo "Unknown option: $1"
+      exit 1
+      ;;
+
+    *)
+      if (( receiver_set )); then
+        echo "Only one receiver can be specified"
+        exit 1
+      fi
+
+      receiver_key="$1"
+      receiver_set=1
+      shift
+      ;;
+  esac
+done
+
+if (( ack_triggered && resolve_alerts )); then
+  echo "--ack and --resolve cannot be used together"
+  exit 1
+fi
+
+if (( resolve_alerts && triggered_only )); then
+  echo "--triggered-only and --resolve cannot be used together"
+  exit 1
+fi
+
+case "${receiver_key}" in
+  default)
+    # No receiver filter.
+    receiver=""
+    ;;
+  infra)
+    receiver="rootly-alerts-hq-critical"
+    ;;
+  infra-warning)
+    receiver="rootly-alerts-hq-warning"
+    ;;
+  develp)
+    receiver="lido-infra-critical"
+    ;;
+  develp-warning)
+    receiver="lido-infra-warning"
+    ;;
+  *)
+    echo "Unknown receiver: ${receiver_key}"
+    exit 1
+    ;;
+esac
+
+#
+# Decide statuses to fetch.
+#
+if (( ack_triggered )); then
+  statuses=(triggered)
+
+elif (( resolve_alerts )); then
+  # Never resolve triggered alerts.
+  statuses=(open acknowledged)
+
+elif (( triggered_only )); then
+  statuses=(triggered)
+
+else
+  case "${receiver_key}" in
+    infra-warning|develp-warning)
+      statuses=(open)
+      ;;
+    *)
+      statuses=(triggered acknowledged)
+      ;;
+  esac
+fi
+
+function rootly-json-to-table {
+  jq -r \
+    --arg receiver "${receiver}" \
+    --arg host_filter "${host_filter}" '
+    .data[]
+    | .attributes as $a
+    | ($a.data.commonLabels.instance // "") as $host
+    | select(
+        $a.status != "resolved"
+        and (
+          $receiver == ""
+          or $a.data.receiver == $receiver
+        )
+        and (
+          $host_filter == ""
+          or ($host | contains($host_filter))
+        )
+      )
+    | (
+        [
+          $a.data.alerts[]?
+          | .labels.check // empty
+        ]
+        | unique
+      ) as $checks
+    | [
+        ($a.data.commonLabels.fleet // "(no fleet)"),
+        (($a.created_at // "")[0:16]),
+        ($a.status // ""),
+        $host,
+        ($a.short_id // ""),
+        ($a.description // ""),
+        ($a.data.commonLabels.job // ""),
+        ($a.data.commonLabels.service_id // ""),
+        ($checks | join(", "))
+      ]
+    | @tsv
+  '
+}
+
+function rootly-action-ids {
+  local wanted_status="$1"
+
+  jq -r \
+    --arg receiver "${receiver}" \
+    --arg host_filter "${host_filter}" \
+    --arg wanted_status "${wanted_status}" '
+    .data[]
+    | .attributes as $a
+    | ($a.data.commonLabels.instance // "") as $host
+    | select(
+        $a.status == $wanted_status
+        and (
+          $receiver == ""
+          or $a.data.receiver == $receiver
+        )
+        and (
+          $host_filter == ""
+          or ($host | contains($host_filter))
+        )
+      )
+    | .id // empty
+  '
+}
+
+function rootly-table-colors {
+  local reset=$'\033[0m'
+  local bold=$'\033[1m'
+  local cyan=$'\033[36m'
+  local blue=$'\033[34m'
+  local red=$'\033[31m'
+  local yellow=$'\033[33m'
+
+  sed \
+    -e "/^Fleet:/s/$/${reset}/" \
+    -e "/^Fleet:/s/^/${bold}${cyan}/" \
+    -e "/^Date /s/$/${reset}/" \
+    -e "/^Date /s/^/${bold}/" \
+    -e "s/^__TRIGGERED__\(.*\)$/${red}\1${reset}/" \
+    -e "s/^__ACKNOWLEDGED__\(.*\)$/${blue}\1${reset}/" \
+    -e "s/^__OPEN__\(.*\)$/${yellow}\1${reset}/"
+}
+
+function rootly-alerts-json {
+  local alert_status="$1"
+  local page="$2"
+
+  rootly alerts list \
+    --status="${alert_status}" \
+    --sort=created_at \
+    --page="${page}" \
+    --page-size="${page_size}" \
+    --format=json
+}
+
+function rootly-format-table {
+  local format_verbose="${1:-${verbose}}"
+
+  awk -v verbose="${format_verbose}" -F '\t' '
+    function remove_literal(s, needle, p) {
+      if (needle == "")
+        return s
+
+      while ((p = index(s, needle)) > 0)
+        s = substr(s, 1, p - 1) substr(s, p + length(needle))
+
+      return s
+    }
+
+    function dedupe_description(s, parts, n, i, part, result, key) {
+      dedupe_generation++
+
+      n = split(s, parts, /;[[:space:]]*/)
+      result = ""
+
+      for (i = 1; i <= n; i++) {
+        part = parts[i]
+
+        sub(/^[[:space:]]+/, "", part)
+        sub(/[[:space:]]+$/, "", part)
+
+        if (part == "")
+          continue
+
+        key = dedupe_generation SUBSEP part
+
+        if (!(key in description_part_seen)) {
+          description_part_seen[key] = 1
+
+          if (result == "")
+            result = part
+          else
+            result = result "; " part
+        }
+      }
+
+      return result
+    }
+
+    {
+      fleet_name   = $1
+      date         = $2
+      alert_status = $3
+      host         = $4
+      alert_id     = $5
+      description  = $6
+      job          = $7
+      service_id   = $8
+      checks       = $9
+
+      #
+      # Clean description.
+      #
+      gsub(/\\r/, "", description)
+      gsub(/\\n+/, "; ", description)
+
+      #
+      # Explicit hostname cleanup.
+      #
+      # Remove:
+      #
+      #   foo @ <this-host> check failing
+      #
+      # but preserve:
+      #
+      #   foo @ <other-host> service unavailable
+      #
+      if (host != "")
+        description = remove_literal(description, " @ " host)
+
+      description = remove_literal(description, host)
+
+      sub(/^[[:space:]]*:[[:space:]]*/, "", description)
+
+      gsub(/[[:space:]][[:space:]]+/, " ", description)
+      gsub(/[[:space:]]*;[[:space:]]*;[[:space:]]*/, "; ", description)
+
+      sub(/^[[:space:]]+/, "", description)
+      sub(/[[:space:]]+$/, "", description)
+
+      description = dedupe_description(description)
+
+      #
+      # consul-exporter uses structured information.
+      # Everything else uses the Rootly description.
+      #
+      if (job == "consul-exporter") {
+        display_service_id = service_id
+
+        #
+        # Non-verbose:
+        # merge foo-metrics into foo.
+        #
+        if (!verbose)
+          sub(/-metrics$/, "", display_service_id)
+
+        if (display_service_id != "")
+          info = job ": " display_service_id
+        else
+          info = job
+
+        #
+        # Verbose shows checks.
+        #
+        if (verbose && checks != "")
+          info = info " (" checks ")"
+      } else {
+        info = description
+      }
+
+      #
+      # Fleet ordering.
+      #
+      if (!(fleet_name in fleet_seen)) {
+        fleet_seen[fleet_name] = 1
+        fleet_order[++fleet_count] = fleet_name
+      }
+
+      #
+      # Host grouping.
+      #
+      host_key = fleet_name SUBSEP host
+
+      if (!(host_key in host_seen)) {
+        host_seen[host_key] = 1
+        host_date[host_key] = date
+
+        n = ++host_count[fleet_name]
+        host_order[fleet_name SUBSEP n] = host
+      }
+
+      #
+      # Verbose keeps individual alerts.
+      #
+      # Non-verbose deduplicates rendered info.
+      #
+      if (verbose) {
+        if (alert_id != "")
+          alert_key = host_key SUBSEP "__alert__" alert_id
+        else
+          alert_key = host_key SUBSEP "__row__" NR
+      } else {
+        alert_key = host_key SUBSEP info
+      }
+
+      if (!(alert_key in alert_seen)) {
+        alert_seen[alert_key] = 1
+
+        n = ++alert_count[host_key]
+        alert_order[host_key SUBSEP n] = alert_key
+
+        alert_info[alert_key] = info
+        alert_id_value[alert_key] = alert_id
+        alert_status_value[alert_key] = alert_status
+      }
+
+      count++
+    }
+
+    END {
+      for (f = 1; f <= fleet_count; f++) {
+        fleet_name = fleet_order[f]
+
+        if (f > 1)
+          printf "\n"
+
+        printf "Fleet: %s\n", fleet_name
+
+        if (verbose)
+          printf "%-18s %s\n", "Date", "Info"
+
+        for (h = 1; h <= host_count[fleet_name]; h++) {
+          host = host_order[fleet_name SUBSEP h]
+          host_key = fleet_name SUBSEP host
+
+          #
+          # Do not print an empty hostname row.
+          #
+          if (host != "") {
+            if (verbose)
+              printf "%-18s %s\n", host_date[host_key], host
+            else
+              printf "%s\n", host
+          }
+
+          for (a = 1; a <= alert_count[host_key]; a++) {
+            alert_key = alert_order[host_key SUBSEP a]
+
+            info   = alert_info[alert_key]
+            id     = alert_id_value[alert_key]
+            status = alert_status_value[alert_key]
+
+            if (verbose && id != "")
+              info = id " " info
+
+            #
+            # No indentation when there is no hostname.
+            #
+            if (host == "")
+              indent = ""
+            else if (verbose)
+              indent = sprintf("%-18s ", "")
+            else
+              indent = "  "
+
+            if (status == "triggered")
+              printf "__TRIGGERED__%s%s\n", indent, info
+            else if (status == "acknowledged")
+              printf "__ACKNOWLEDGED__%s%s\n", indent, info
+            else if (status == "open")
+              printf "__OPEN__%s%s\n", indent, info
+            else
+              printf "%s%s\n", indent, info
+          }
+        }
+      }
+
+      printf "\nTotal: %d\n", count
+    }
+  '
+}
+
+page_size=100
+
+# Maximum Rootly list requests per status.
+max_pages=10
+
+# Normal viewing may stop after this many matching alerts.
+# Action modes scan all max_pages.
+max_matches=50
+
+tmp_rows="$(mktemp)"
+tmp_action_ids="$(mktemp)"
+tmp_unique_ids="$(mktemp)"
+
+trap 'rm -f "${tmp_rows}" "${tmp_action_ids}" "${tmp_unique_ids}"' EXIT
+
+#
+# Fetch alerts.
+#
+for alert_status in "${statuses[@]}"; do
+  matched=0
+
+  for ((page = 1; page <= max_pages; page++)); do
+    json="$(rootly-alerts-json "${alert_status}" "${page}")" || break
+
+    rows="$(printf '%s' "${json}" | rootly-json-to-table)"
+
+    if [[ -n "${rows}" ]]; then
+      printf '%s\n' "${rows}" >> "${tmp_rows}"
+    fi
+
+    if (( ack_triggered || resolve_alerts )); then
+      #
+      # Action mode.
+      #
+      # Collect exact IDs and scan all configured pages.
+      #
+      printf '%s' "${json}" |
+        rootly-action-ids "${alert_status}" >> "${tmp_action_ids}"
+    else
+      #
+      # Normal view mode.
+      #
+      if [[ -n "${rows}" ]]; then
+        page_matches=$(
+          printf '%s\n' "${rows}" |
+            awk 'NF { count++ } END { print count + 0 }'
+        )
+
+        (( matched += page_matches ))
+      fi
+
+      (( matched >= max_matches )) && break
+    fi
+
+    next_page=$(
+      printf '%s' "${json}" |
+        jq -r '.meta.next_page // empty'
+    )
+
+    [[ -z "${next_page}" ]] && break
+  done
+done
+
+#
+# Prepare action preview + confirmation.
+#
+if (( ack_triggered || resolve_alerts )); then
+  sort -u "${tmp_action_ids}" > "${tmp_unique_ids}"
+
+  action_count=$(
+    awk 'NF { count++ } END { print count + 0 }' "${tmp_unique_ids}"
+  )
+
+  if (( action_count == 0 )); then
+    if (( ack_triggered )); then
+      echo "No matching triggered alerts to acknowledge."
+    else
+      echo "No matching open/acknowledged alerts to resolve."
+    fi
+
+    exit 0
+  fi
+
+  #
+  # Always show action preview in verbose mode:
+  # date + host + alert ID + consul checks.
+  #
+  sort -t $'\t' -k1,1 -k2,2r "${tmp_rows}" |
+    rootly-format-table 1 |
+    rootly-table-colors
+
+  echo
+
+  if (( ack_triggered )); then
+    printf "Acknowledge %d alert(s)? [y/N] " "${action_count}"
+  else
+    printf "Resolve %d alert(s)? [y/N] " "${action_count}"
+  fi
+
+  read -r confirmation
+
+  case "${confirmation}" in
+    y|Y|yes|Yes|YES)
+      ;;
+    *)
+      echo "Cancelled."
+      exit 0
+      ;;
+  esac
+fi
+
+#
+# Action: acknowledge triggered alerts.
+#
+if (( ack_triggered )); then
+  ack_count=0
+
+  while IFS= read -r alert_id; do
+    [[ -z "${alert_id}" ]] && continue
+
+    if rootly alerts ack "${alert_id}" --quiet; then
+      (( ack_count++ ))
+    else
+      echo "Failed to acknowledge: ${alert_id}" >&2
+    fi
+  done < "${tmp_unique_ids}"
+
+  echo "Acknowledged: ${ack_count}"
+  exit 0
+fi
+
+#
+# Action: resolve open + acknowledged alerts.
+#
+if (( resolve_alerts )); then
+  resolve_count=0
+
+  while IFS= read -r alert_id; do
+    [[ -z "${alert_id}" ]] && continue
+
+    if rootly alerts resolve "${alert_id}" --quiet; then
+      (( resolve_count++ ))
+    else
+      echo "Failed to resolve: ${alert_id}" >&2
+    fi
+  done < "${tmp_unique_ids}"
+
+  echo "Resolved: ${resolve_count}"
+  exit 0
+fi
+
+#
+# Normal view.
+#
+sort -t $'\t' -k1,1 -k2,2r "${tmp_rows}" |
+  rootly-format-table |
+  rootly-table-colors
