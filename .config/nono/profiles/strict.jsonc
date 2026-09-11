@@ -94,6 +94,20 @@
       "$WORKDIR/.npmrc",
       "$WORKDIR/.pypirc",
       "$WORKDIR/.netrc",
+
+      "$WORKDIR/.direnv",
+      "$WORKDIR/.terraform",
+
+      "$WORKDIR/terraform.tfstate",
+
+      "$WORKDIR/ansible/files/consul-ca.crt",
+      "$WORKDIR/ansible/files/consul-client.crt",
+      "$WORKDIR/ansible/files/consul-client.key",
+      "$WORKDIR/ansible/files/vault-ca.crt",
+      "$WORKDIR/ansible/files/vault-client-user.crt",
+      "$WORKDIR/ansible/files/vault-client-user.key",
+      "$WORKDIR/ansible/files/cache",
+      "$TMPDIR/ift-infra-secrets",
     ],
     "bypass_protection": [],
     "suppress_save_prompt": [],
