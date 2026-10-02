@@ -9,6 +9,7 @@ return {
       },
       linters_by_ft = {
         make = { "checkmake" },
+        groovy = { "npm-groovy-lint" },
       },
     },
   },

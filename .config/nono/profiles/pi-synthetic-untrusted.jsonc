@@ -1,0 +1,10 @@
+{
+  "extends": ["pi-synthetic"],
+  "meta": {
+    "name": "pi-synthetic-untrusted",
+    "description": "PI Synthetic - Untrusted Project",
+  },
+  "workdir": {
+    "access": "read",
+  },
+}

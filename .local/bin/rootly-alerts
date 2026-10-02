@@ -47,7 +47,7 @@ while (( $# > 0 )); do
       ;;
 
     --help|-h)
-      echo "Usage: rootly-alerts-table [receiver] [options]"
+      echo "Usage: rootly-alerts [receiver] [options]"
       echo
       echo "Receivers:"
       echo "  (none)           all receivers, critical statuses"
@@ -210,6 +210,7 @@ function rootly-table-colors {
   local bold=$'\033[1m'
   local cyan=$'\033[36m'
   local blue=$'\033[34m'
+  local green=$'\033[32m'
   local red=$'\033[31m'
   local yellow=$'\033[33m'
 
@@ -220,7 +221,8 @@ function rootly-table-colors {
     -e "/^Date /s/^/${bold}/" \
     -e "s/^__TRIGGERED__\(.*\)$/${red}\1${reset}/" \
     -e "s/^__ACKNOWLEDGED__\(.*\)$/${blue}\1${reset}/" \
-    -e "s/^__OPEN__\(.*\)$/${yellow}\1${reset}/"
+    -e "s/^__OPEN__\(.*\)$/${yellow}\1${reset}/" \
+    -e "s/^__CLEAR__\(.*\)$/${green}\1${reset}/"
 }
 
 function rootly-alerts-json {
@@ -400,64 +402,68 @@ function rootly-format-table {
     }
 
     END {
-      for (f = 1; f <= fleet_count; f++) {
-        fleet_name = fleet_order[f]
+      if (count == 0) {
+        print "__CLEAR__No alerts. Time to break smth."
+      } else {
+        for (f = 1; f <= fleet_count; f++) {
+          fleet_name = fleet_order[f]
 
-        if (f > 1)
-          printf "\n"
+          if (f > 1)
+            printf "\n"
 
-        printf "Fleet: %s\n", fleet_name
+          printf "Fleet: %s\n", fleet_name
 
-        if (verbose)
-          printf "%-18s %s\n", "Date", "Info"
+          if (verbose)
+            printf "%-18s %s\n", "Date", "Info"
 
-        for (h = 1; h <= host_count[fleet_name]; h++) {
-          host = host_order[fleet_name SUBSEP h]
-          host_key = fleet_name SUBSEP host
-
-          #
-          # Do not print an empty hostname row.
-          #
-          if (host != "") {
-            if (verbose)
-              printf "%-18s %s\n", host_date[host_key], host
-            else
-              printf "%s\n", host
-          }
-
-          for (a = 1; a <= alert_count[host_key]; a++) {
-            alert_key = alert_order[host_key SUBSEP a]
-
-            info   = alert_info[alert_key]
-            id     = alert_id_value[alert_key]
-            status = alert_status_value[alert_key]
-
-            if (verbose && id != "")
-              info = id " " info
+          for (h = 1; h <= host_count[fleet_name]; h++) {
+            host = host_order[fleet_name SUBSEP h]
+            host_key = fleet_name SUBSEP host
 
             #
-            # No indentation when there is no hostname.
+            # Do not print an empty hostname row.
             #
-            if (host == "")
-              indent = ""
-            else if (verbose)
-              indent = sprintf("%-18s ", "")
-            else
-              indent = "  "
+            if (host != "") {
+              if (verbose)
+                printf "%-18s %s\n", host_date[host_key], host
+              else
+                printf "%s\n", host
+            }
 
-            if (status == "triggered")
-              printf "__TRIGGERED__%s%s\n", indent, info
-            else if (status == "acknowledged")
-              printf "__ACKNOWLEDGED__%s%s\n", indent, info
-            else if (status == "open")
-              printf "__OPEN__%s%s\n", indent, info
-            else
-              printf "%s%s\n", indent, info
+            for (a = 1; a <= alert_count[host_key]; a++) {
+              alert_key = alert_order[host_key SUBSEP a]
+
+              info   = alert_info[alert_key]
+              id     = alert_id_value[alert_key]
+              status = alert_status_value[alert_key]
+
+              if (verbose && id != "")
+                info = id " " info
+
+              #
+              # No indentation when there is no hostname.
+              #
+              if (host == "")
+                indent = ""
+              else if (verbose)
+                indent = sprintf("%-18s ", "")
+              else
+                indent = "  "
+
+              if (status == "triggered")
+                printf "__TRIGGERED__%s%s\n", indent, info
+              else if (status == "acknowledged")
+                printf "__ACKNOWLEDGED__%s%s\n", indent, info
+              else if (status == "open")
+                printf "__OPEN__%s%s\n", indent, info
+              else
+                printf "%s%s\n", indent, info
+            }
           }
         }
-      }
 
-      printf "\nTotal: %d\n", count
+        printf "\nTotal: %d\n", count
+      }
     }
   '
 }

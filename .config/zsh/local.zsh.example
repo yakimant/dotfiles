@@ -1,0 +1,7 @@
+#export GIT_AUTHOR_NAME="Some Body"
+#export GIT_AUTHOR_EMAIL="somebody@gmail.com"
+# AGE yubike plugin doesnt need a secret password
+#export GOPASS_AGE_PASSWORD="YUBIKEYDOESNTNEEDPAPASSWORD"
+# IFT
+#export LIDO_REMOTE_USER="somebody"
+#export LIDO_REMOTE_CORES=4

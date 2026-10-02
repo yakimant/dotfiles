@@ -1,0 +1,13 @@
+{
+  "extends": ["pi-synthetic"],
+  "meta": {
+    "name": "pi-synthetic-trusted",
+    "description": "PI Synthetic - Trusted Project",
+  },
+  "filesystem": {
+    "allow": ["$HOME/.local/state/pi/sessions"],
+  },
+  "workdir": {
+    "access": "readwrite",
+  },
+}

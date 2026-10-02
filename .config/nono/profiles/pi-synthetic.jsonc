@@ -1,0 +1,18 @@
+{
+  "extends": ["pi"],
+  "meta": {
+    "name": "pi-synthetic",
+    "description": "PI Synthetic",
+  },
+  "network": {
+    "allow_domain": ["api.synthetic.new"],
+    "credentials": ["synthetic"],
+    "custom_credentials": {
+      "synthetic": {
+        "upstream": "https://api.synthetic.new/v1",
+        "credential_key": "SYNTHETIC_API_KEY",
+        "env_var": "SYNTHETIC_API_KEY",
+      },
+    },
+  },
+}

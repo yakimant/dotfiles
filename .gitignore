@@ -1,6 +1,6 @@
 .config/git/workspace.inc
 .ssh/*
-!.ssh/config
+!.ssh/config*
 .config/git/git
 .config/nvim/nvim
 .config/tmux/tmux
@@ -10,3 +10,5 @@
 .config/ncdu/ncdu
 .config/sway/sway
 .config/nvim/lazy-lock.json
+.config/zsh/local.zsh
+.config/pi/auth.json

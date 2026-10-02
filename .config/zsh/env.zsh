@@ -11,10 +11,6 @@ export GPG_TTY="$(tty)"
 # Ripgrep
 export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgreprc"
 
-# IFT
-export LIDO_REMOTE_USER="yakimant"
-#export LIDO_REMOTE_CORES=4
-
 # Pure Prompt
 zstyle :prompt:pure:git:stash show yes
 
@@ -29,6 +25,7 @@ export DIRENV_WARN_TIMEOUT=20s
 # FZF
 source <(fzf --zsh)
 
+# Path
 path=("$HOME/.local/bin" $path)
 #  "$(go env GOPATH)/bin"
 #  "${ANDROID_HOME}/emulator"
@@ -51,37 +48,36 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export HOMEBREW_CLEANUP_MAX_AGE_DAYS=15
 fi
 
+# SSH
 export SSH_ASKPASS_REQUIRE=never
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export AQT_CONFIG="$HOME/.config/aqt/settings.ini"
 
+# Pagers
 export PAGER="less"
 export LESS="FRXMK"
 export SYSTEMD_PAGER="less"
 export SYSTEMD_LESS="FRXMK"
 
-export GOPASS_AGE_PASSWORD="YUBIKEYDOESNTNEEDPAPASSWORD"
-
 export PINENTRY_PROGRAM="${HOME}/bin/pinentry-env"
 # export PINENTRY_PROGRAM="/run/current-system/sw/bin/pinentry-mac"
 
-
 # TODO: only proxy whitelist of services (discord etc)
 export NO_PROXY="localhost,127.0.0.1,::1,*.local,169.254.0.0/16,10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,fc00::/7,fe80::/10,.infra.develp.co,.ts.net"
-
-# cachix
+# for cachix
 export HTTPS_PROXY="http://127.0.0.1:8080"
-
 export ALL_PROXY="socks5h://127.0.0.1:1080"
-
 # for curl
 export https_proxy="$HTTPS_PROXY"
-
 # export HTTP_PROXY="$_PROXY"
 # export http_proxy="$_PROXY"
 # export FTP_PROXY="$ALL_PROXY"
 # export ftp_proxy="$ALL_PROXY"
 # export all_proxy="$ALL_PROXY"
 # export no_proxy="$NO_PROXY"
+
+# PI
+export PI_CODING_AGENT_DIR="$HOME/.config/pi"
+export PI_CODING_AGENT_SESSION_DIR="$HOME/.local/state/pi/sessions"

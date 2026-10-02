@@ -7,13 +7,18 @@
 
 # Safest:
 web_search = "disabled" # "cached"
-approval_policy = "untrusted" # untrusted < on-request < on-failure
+# approval_policy = "untrusted" # untrusted < on-request < on-failure
 sandbox_mode = "read-only" # "workspace-write"
+model = "gpt-6-astra"
 
 # Defaults:
 # web_search = "cached"
 # approval_policy = "on-request"
 # sandbox_mode = "workspace-write"
+
+notify = ["/Users/status/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+personality = "pragmatic"
+model_reasoning_effort = "low"
 
 [sandbox_workspace_write]
 exclude_tmpdir_env_var = true  # $TMPDIR
@@ -24,6 +29,9 @@ network_access = false
 [shell_environment_policy]
 inherit = "none" # all, core
 ignore_default_excludes = true
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
 # exclude = ["AWS_*", "AZURE_*"]
 # set = { PATH = "/usr/bin", MY_FLAG = "1" }
 # include_only = ["PATH", "HOME"]
@@ -39,7 +47,7 @@ enabled = false
 ################################################################################
 
 model = "gpt-5.3-codex"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 model_reasoning_summary = "auto"
 model_verbosity = "medium"
 model_supports_reasoning_summaries = false
@@ -62,7 +70,6 @@ personality = "pragmatic"
 #   "osascript -e 'display notification \"Task finished!\" with title \"Codex\"'; afplay /System/Library/Sounds/Glass.aiff; say -v 'Daniel' 'Finished!';",
 # ]
 # notify = ["osascript", "-e", "on run argv\n display notification (item 1 of argv) with title \"Codex\"\n end run"]
-notify = ["osascript", "-e", "display notification \"Notify\" with title \"Codex\""]
 
 ################################################################################
 # TUI
@@ -76,3 +83,113 @@ show_tooltips = false
 alternate_screen = "always" # auto, always, never
 
 check_for_update_on_startup = false
+
+[notice.model_migrations]
+"gpt-5.2-codex" = "gpt-5.3-codex"
+"gpt-5.3-codex" = "gpt-5.4"
+
+[projects."/Users/status/work/yanarullo.github.io"]
+trust_level = "trusted"
+
+[desktop]
+followUpQueueMode = "queue"
+dock-icon-preference = "app-default"
+conversationDetailMode = "STEPS_PROSE"
+open-link-in-target-preference = "external-browser"
+sansFontSize = 14
+mac-menu-bar-enabled = false
+hotkey-window-projectless-default-enabled = true
+appearanceLightCodeThemeId = "github"
+realtimeVoiceScreenContextEnabled = false
+open-local-url-in-target-preference = "external-browser"
+codeFontSize = 13
+ambient-suggestions-enabled = false
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "persistent", "max"]
+
+[desktop.open-in-target-preferences]
+global = "fileManager"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/status/Documents/New project" = "fileManager"
+
+[desktop.appearanceLightChromeTheme]
+accent = "#0969da"
+contrast = 40
+ink = "#1f2328"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#1a7f37"
+diffRemoved = "#cf222e"
+skill = "#8250df"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/status/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-08-10T13:03:55Z"
+source_type = "local"
+source = "/Users/status/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[features]
+plugins = false
+workspace_dependencies = false
+js_repl = false
+
+[mcp_servers.cua_repl]
+command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+enabled = false
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/status/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/status/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.917.71314"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/status/.codex/plugins/cache/openai-bundled/browser/26.917.71314/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
