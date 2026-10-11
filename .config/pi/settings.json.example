@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.81.1",
+  "collapseChangelog": true,
   "theme": "light",
-  "defaultProjectTrust": "ask",
+  "defaultProjectTrust": "never",
   "quietStartup": true,
   "packages": [
     "npm:pi-web-search@1.5.0"
@@ -12,8 +12,8 @@
   "themes": [],
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-astra",
+  "defaultProvider": "CHANGEME",
+  "defaultModel": "CHANGEME",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "httpIdleTimeoutMs": 300000,

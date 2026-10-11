@@ -18,7 +18,7 @@ ln -fvs $HOME/work/dotfiles/.config/ncdu $HOME/.config/ncdu
 ln -fvs $HOME/work/dotfiles/.config/sway $HOME/.config/sway
 ln -fvs $HOME/work/dotfiles/.config/swaylock $HOME/.config/swaylock
 ln -fvs $HOME/work/dotfiles/.config/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
-ln -fvs $HOME/work/dotfiles/.config/pi/settings.json $HOME/.config/pi/settings.json
+ln -fvs $HOME/work/dotfiles/.config/pi/settings.json.example $HOME/.config/pi/settings.json.example
 ln -fvs $HOME/work/dotfiles/.config/.markdownlint-cli2.yaml $HOME/.config/.markdownlint-cli2.yaml
 
 ln -fvs $HOME/work/dotfiles/.colima/default/colima.yaml $HOME/.colima/default/colima.yaml
