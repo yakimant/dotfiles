@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export PI_SKIP_VERSION_CHECK=1
+
 TRUST_FILE="$HOME/.config/pi/trust.json"
 REAL_PI="/run/current-system/sw/bin/pi"
 cwd="$(pwd -P)"
+
+# provider: explicit arg > env > default
+PROVIDERS=(codex synthetic openai)
+provider="${PI_PROVIDER:-codex}"
+
+declare -A DEFAULT_MODEL=(
+  [codex]="openai-codex/gpt-5.6-sol"
+  [synthetic]="synthetic/hf:zai-org/GLM-5.3-Flash"
+  [openai]="openai/gpt-5.6-sol"
+)
+
 
 trusted="$(
   jq -r --arg cwd "$cwd" '.[$cwd] // false' "$TRUST_FILE" 2>/dev/null \
@@ -14,13 +27,12 @@ nono_args=()
 pi_args=()
 
 if [[ -d "$cwd/.git" ]]; then
-  nono_args+=(--silent --allow-cwd)
+  nono_args+=(--silent --allow-cwd --allow "$cwd")
 fi
 
-if [[ "$trusted" == "true" ]]; then
-  profile="pi-codex-trusted"
-else
-  profile="pi-codex-untrusted"
+profile="pi-${provider}"
+pi_args+=(--model "${DEFAULT_MODEL[$provider]}")
+if [[ "$trusted" != "true" ]]; then
   pi_args+=(--no-context-files --no-session)
 fi
 

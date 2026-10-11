@@ -12,8 +12,6 @@
   "themes": [],
   "enableInstallTelemetry": false,
   "enableAnalytics": false,
-  "defaultProvider": "CHANGEME",
-  "defaultModel": "CHANGEME",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "httpIdleTimeoutMs": 300000,

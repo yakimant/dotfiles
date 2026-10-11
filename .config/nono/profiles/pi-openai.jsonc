@@ -1,0 +1,10 @@
+{
+  "extends": ["pi"],
+  "meta": {
+    "name": "pi-openai",
+    "description": "PI OpenAI",
+  },
+  "network": {
+    "credentials": ["openai"],
+  },
+}

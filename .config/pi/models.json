@@ -1,0 +1,68 @@
+{
+  "providers": {
+    "openai": {
+      "baseUrl": "$OPENAI_BASE_URL"
+    },
+    "synthetic": {
+      "baseUrl": "$SYNTHETIC_BASE_URL",
+      "api": "openai-completions",
+      "apiKey": "$SYNTHETIC_API_KEY",
+      "compat": {
+        "supportsDeveloperRole": false
+      },
+      "models": [
+        {
+          "id": "hf:zai-org/GLM-5.3-Flash",
+          "name": "GLM 5.3 Flash (Synthetic)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 524288,
+          "maxTokens": 65536,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "xhigh": null,
+            "max": "max"
+          }
+        },
+        {
+          "id": "hf:moonshotai/Kimi-K3",
+          "name": "Kimi K3 (Synthetic)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 524288,
+          "maxTokens": 65536,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "xhigh": null,
+            "max": "max"
+          }
+        },
+        {
+          "id": "hf:deepseek-ai/DeepSeek-V4.1-Flash",
+          "name": "DeepSeek V4.1 Flash (Synthetic)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 524288,
+          "maxTokens": 65536,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          }
+        }
+      ]
+    }
+  }
+}
