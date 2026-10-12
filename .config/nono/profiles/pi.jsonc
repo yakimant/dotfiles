@@ -9,7 +9,9 @@
     "suppress_save_prompt": ["/Users", "$HOME/.CFUserTextEncoding"],
     "allow": ["$HOME/.config/pi", "$HOME/.local/state/pi"],
   },
-
+  "network": {
+    "allow_domain": ["pi.dev"]
+  },
   "environment": {
     "deny_vars": ["*"],
     "set_vars": {

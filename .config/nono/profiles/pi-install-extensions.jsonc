@@ -1,0 +1,10 @@
+{
+  "extends": ["pi"],
+  "meta": {
+    "name": "pi-install-extensions",
+    "description": "PI Install Extensions",
+  },
+  "network": {
+    "allow_domain": ["registry.npmjs.org"],
+  },
+}
