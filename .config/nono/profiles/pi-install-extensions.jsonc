@@ -4,6 +4,9 @@
     "name": "pi-install-extensions",
     "description": "PI Install Extensions",
   },
+  "filesystem": {
+    "allow": ["$HOME/.npm"],
+  },
   "network": {
     "allow_domain": ["registry.npmjs.org"],
   },
