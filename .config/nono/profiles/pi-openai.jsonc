@@ -4,7 +4,9 @@
     "name": "pi-openai",
     "description": "PI OpenAI",
   },
-  "network": {
-    "credentials": ["openai"],
-  },
+  // TODO: nono proxy doesnt support proxy
+  // models.json - "baseUrl": "$OPENAI_BASE_URL",
+  // "network": {
+  //   "credentials": ["openai"],
+  // },
 }

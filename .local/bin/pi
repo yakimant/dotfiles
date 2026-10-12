@@ -14,7 +14,7 @@ provider="${PI_PROVIDER:-codex}"
 declare -A DEFAULT_MODEL=(
   [codex]="openai-codex/gpt-6.1-sol"
   [synthetic]="synthetic/hf:deepseek-ai/DeepSeek-V4.1-Flash"
-  [openai]="openai/gpt-5.6-luna"
+  [openai]="openai/gpt-6-luna"
 )
 
 
