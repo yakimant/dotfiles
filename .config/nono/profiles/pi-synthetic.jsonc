@@ -10,7 +10,7 @@
       "synthetic": {
         "upstream": "https://api.synthetic.new/openai/v1",
         "credential_key": "synthetic",
-        "env_var": "SYNTHETIC_API_KEY",
+        "env_var": "NONO_PROXY_TOKEN",
       },
     },
   },

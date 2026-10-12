@@ -81,3 +81,4 @@ export https_proxy="$HTTPS_PROXY"
 # PI
 export PI_CODING_AGENT_DIR="$HOME/.config/pi"
 export PI_CODING_AGENT_SESSION_DIR="$HOME/.local/state/pi/sessions"
+export PI_SKIP_VERSION_CHECK=1

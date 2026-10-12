@@ -12,3 +12,4 @@
 .config/nvim/lazy-lock.json
 .config/zsh/local.zsh
 .config/pi/auth.json
+.config/nono/nono
